@@ -1,0 +1,158 @@
+{
+  "requested_url": "https://www.futureflowai.co.uk/",
+  "captured_at_utc": "2026-10-21T10:46:33.565482+00:00",
+  "assets": [
+    {
+      "file": "homepage.html",
+      "url": "https://www.futureflowai.co.uk/",
+      "sha256": "7f90c0e1186a58a864a5dd87f4494a8d4965a320fdeadc068efdd7b3072b4a92",
+      "bytes": 77186,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "file": "asset-00.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/4bd1b696-c7eeac9c5f87815f.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/4bd1b696-c7eeac9c5f87815f.js",
+      "sha256": "37241cd3183b7a3ec7a36b795f3a121f42e2a60e00c86668668e9451f2a43775",
+      "bytes": 168413,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-01.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/684-7d63dddf43fdf093.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/684-7d63dddf43fdf093.js",
+      "sha256": "5f18bd9324f8eb119ea863e6ab04f1238a3163107253b17fc92fcf6462c99ff1",
+      "bytes": 174927,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-02.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/main-app-d9794b1200c643e4.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/main-app-d9794b1200c643e4.js",
+      "sha256": "5f2187cd5c9aaa42aff99b17ab666e59d13b47fc65d161d54983608c895dbfc1",
+      "bytes": 518,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-03.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/d50e61c5-dbd5828380b2f674.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/d50e61c5-dbd5828380b2f674.js",
+      "sha256": "4dd587e090b30841a599c7c5d0183f39f427d948aa6025aeca06636cf2b9c2a6",
+      "bytes": 240557,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-04.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/82-b17c7acbadc68d8e.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/82-b17c7acbadc68d8e.js",
+      "sha256": "9b038fb9d717c8e5ddb20490557199cd59f2728b4678608fa9f6437d383e4ea9",
+      "bytes": 159946,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-05.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/745-e46618ab252584e5.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/745-e46618ab252584e5.js",
+      "sha256": "6070eb89490a38645716eb1a5e5ec1f2518e9030a2b74af6ce22c1b7e5af4f31",
+      "bytes": 75937,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-06.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/app/layout-9cdf84f15b64f8e0.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/app/layout-9cdf84f15b64f8e0.js",
+      "sha256": "e47814c65a10cb327c28611a1a765ca1922b2917ca2b87090803d6b88975e03d",
+      "bytes": 14670,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-07.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/355-2d6d5529ddf0fc07.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/355-2d6d5529ddf0fc07.js",
+      "sha256": "729270f5ca5e2c317e33512cef6d8b256b913be3cbb41e765b3cf2d563bcfc0b",
+      "bytes": 109916,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-08.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/app/page-7369811ca5acfce6.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/app/page-7369811ca5acfce6.js",
+      "sha256": "bb9ae8eb4c0e1f874855774a04adf373ff97baba5a46c39bdba077613a586aab",
+      "bytes": 5772,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-09.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "bytes": 112594,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-10.js",
+      "url": "https://www.futureflowai.co.uk/_next/static/chunks/webpack-a74146b9f1f7dd30.js",
+      "final_url": "https://www.futureflowai.co.uk/_next/static/chunks/webpack-a74146b9f1f7dd30.js",
+      "sha256": "4db4ba10839de3b638e7e6e7a456cbbab23c856fd3e728e09e09563596324650",
+      "bytes": 3870,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "inline-00.js",
+      "url": "https://www.futureflowai.co.uk/#inline-script-0",
+      "sha256": "2dcb2e50c883929aebb7a64a7a22cfe2260d856a3c36a6926c082da19c552b7b",
+      "bytes": 130,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-01.js",
+      "url": "https://www.futureflowai.co.uk/#inline-script-1",
+      "sha256": "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea",
+      "bytes": 43,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-02.js",
+      "url": "https://www.futureflowai.co.uk/#inline-script-2",
+      "sha256": "d5e912cc8219a8ee7ac9335be921064632f2e96ef9c709e1268b6d03c85e2e17",
+      "bytes": 1413,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-03.js",
+      "url": "https://www.futureflowai.co.uk/#inline-script-3",
+      "sha256": "7c425a2dc9bda3e9d314b10da5d9924ce2f6d093427378ce434c6df9db42d3eb",
+      "bytes": 34752,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-04.js",
+      "url": "https://www.futureflowai.co.uk/#inline-script-4",
+      "sha256": "92baaee6663f5a9ef39cfdffc2e778a11baa38038244a1b77d832be49cfda3a6",
+      "bytes": 186,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-05.js",
+      "url": "https://www.futureflowai.co.uk/#inline-script-5",
+      "sha256": "d1ba6fa6fc083c7326ea17bdd87c931a2504ba0cebe593e543fe90bb9ce37e15",
+      "bytes": 34,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-06.js",
+      "url": "https://www.futureflowai.co.uk/#inline-script-6",
+      "sha256": "5becb6787cdcf62e5e97575bf50328f71aa42abcb24cded2e7576e464ceae518",
+      "bytes": 186,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-07.js",
+      "url": "https://www.futureflowai.co.uk/#inline-script-7",
+      "sha256": "c68fd8f5f25970dcb03a774325ea2420cfe59afb2994ee31a469506fe35d491a",
+      "bytes": 336,
+      "inline_type": "javascript"
+    }
+  ],
+  "omissions": []
+}

@@ -1,0 +1,211 @@
+{
+  "requested_url": "https://www.techifyai.xyz/",
+  "captured_at_utc": "2026-10-21T10:46:28.817702+00:00",
+  "assets": [
+    {
+      "file": "homepage.html",
+      "url": "https://www.techifyai.xyz/",
+      "sha256": "00ffb2aee68e9f34df2cfd27ae98541bd72b2823d0ab3013f7378f591c58f84d",
+      "bytes": 488859,
+      "content_type": "text/html; charset=utf-8"
+    },
+    {
+      "file": "asset-00.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/32twto47ny9f9.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/32twto47ny9f9.js",
+      "sha256": "1304707271162d6185e716b89741415d053c0206fb4acd1f4695f4322a7843de",
+      "bytes": 179308,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-01.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/3arpqjagllfi2.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/3arpqjagllfi2.js",
+      "sha256": "909648b486baab30cd4f65da2021feff900106c5e9e6e517f05f1f147951c01d",
+      "bytes": 230083,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-02.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/turbopack-1byz1flvc-bu1.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/turbopack-1byz1flvc-bu1.js",
+      "sha256": "b5f9b5199b99ab6c141f4540f0b7d0fe803c4ecf6956849ecb6e59d3d439272e",
+      "bytes": 11255,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-03.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/1esuz3neqk91f.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/1esuz3neqk91f.js",
+      "sha256": "8fd034de5b8f9233e3b1f3b149288928f0412e50c70e3e5683165fe897149c76",
+      "bytes": 14090,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-04.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/1ugi5m8mcmq7z.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/1ugi5m8mcmq7z.js",
+      "sha256": "285c903240c37d0bab05251121fbe73a47567d42a3d86b540f379c0cf48b583e",
+      "bytes": 225,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-05.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/275hlbp7u-57_.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/275hlbp7u-57_.js",
+      "sha256": "76765a00281f0cac5cb1b3925d167f0245546ee2bc49d4aecfd2af7302494f1c",
+      "bytes": 22819,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-06.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/293uy_dd8dh43.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/293uy_dd8dh43.js",
+      "sha256": "7b94998911172d528af0747ed8948700fa62d1c74f19806ae9f222335776c820",
+      "bytes": 34987,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-07.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/115cdh82iklxe.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/115cdh82iklxe.js",
+      "sha256": "f4471d4b6df96c11d8da7778a2b9d7e667dcae0594a57b78a7c59dfee22f47ab",
+      "bytes": 184760,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-08.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/1isdtzybujucf.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/1isdtzybujucf.js",
+      "sha256": "cec3dbc714259b231b47482180857bb62309d2d4b8872f2efce8669d5d920779",
+      "bytes": 51103,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-09.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/42t-xqc8ha1cr.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/42t-xqc8ha1cr.js",
+      "sha256": "58e123937dacf3c1fd5ea5f27bd453dcbb0684146fd1e8fb7c5812a55c41193c",
+      "bytes": 287694,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-10.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/2e65xq6kui-o2.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/2e65xq6kui-o2.js",
+      "sha256": "98bddb9cdeb192afebafecfefef2612bbbe6187cb81865f9e39a9076f667a8c0",
+      "bytes": 44393,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-11.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/19ulwuh_ei72t.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/19ulwuh_ei72t.js",
+      "sha256": "c3df8852685e0cf44d2052c9a2c306744921a244e31081aa397b9fd2fa072dc2",
+      "bytes": 22036,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-12.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/1ricwr5efniud.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/1ricwr5efniud.js",
+      "sha256": "11783295e5af88e9f6b0617aa37ed52f48f48082be502daa936298cf51ae0b63",
+      "bytes": 36359,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-13.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "bytes": 112594,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "asset-14.js",
+      "url": "https://www.techifyai.xyz/_next/static/immutable/chunks/24xe-nphm2g27.js",
+      "final_url": "https://www.techifyai.xyz/_next/static/immutable/chunks/24xe-nphm2g27.js",
+      "sha256": "e1663b722d2e55c507f29f5ecd73be17601609d5959e54d2dc629ceb55fc01c5",
+      "bytes": 24285,
+      "content_type": "application/javascript; charset=utf-8"
+    },
+    {
+      "file": "inline-00.js",
+      "url": "https://www.techifyai.xyz/#inline-script-0",
+      "sha256": "0d4d2a86b21ef15f49025c4eae3a051adc94c48d1e7cbb5b7c6408609e86678c",
+      "bytes": 240,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-01.js",
+      "url": "https://www.techifyai.xyz/#inline-script-1",
+      "sha256": "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea",
+      "bytes": 43,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-02.js",
+      "url": "https://www.techifyai.xyz/#inline-script-2",
+      "sha256": "3e3120597a6a96e620762d722dbf693f6a9866f95cb76e4d2743cd957f828c43",
+      "bytes": 3179,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-03.js",
+      "url": "https://www.techifyai.xyz/#inline-script-3",
+      "sha256": "1f0b314d8a3f94c3aa51ce25ff5f22af74dc7dac326a6eeece5e454162a0afb2",
+      "bytes": 2095,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-04.js",
+      "url": "https://www.techifyai.xyz/#inline-script-4",
+      "sha256": "8b850d38ffc1fbbc20c3cf9c31df9b20cbe70f9dd76505f57543ba549d6fe3b6",
+      "bytes": 44,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-05.js",
+      "url": "https://www.techifyai.xyz/#inline-script-5",
+      "sha256": "1b78b4002a4c7b242292b467d47ac44268c426584429fced4f6e9c860d8a1c49",
+      "bytes": 2677,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-06.js",
+      "url": "https://www.techifyai.xyz/#inline-script-6",
+      "sha256": "f0b39adc91d4edf61786ad9c77b47a37ae155c6453dde2e2410e0242a031071c",
+      "bytes": 352,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-07.js",
+      "url": "https://www.techifyai.xyz/#inline-script-7",
+      "sha256": "2684bfafd1138e72d028bedb11854631cede9311067fb64f82916f53268dfe54",
+      "bytes": 70,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-08.js",
+      "url": "https://www.techifyai.xyz/#inline-script-8",
+      "sha256": "0f175d051cdf8c01e696b5ebcb451ba95e9393149fa841d3dc5b70104bb37525",
+      "bytes": 2881,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-09.js",
+      "url": "https://www.techifyai.xyz/#inline-script-9",
+      "sha256": "39aa0d762473ae673acd98ad2c9445595bf67473057896635a39ee5ba3104b83",
+      "bytes": 56,
+      "inline_type": "javascript"
+    },
+    {
+      "file": "inline-10.js",
+      "url": "https://www.techifyai.xyz/#inline-script-10",
+      "sha256": "317294e22e3cc353a2fbafbb021356e08cbc6f7521629997c1fd83e27d5f212d",
+      "bytes": 45,
+      "inline_type": "javascript"
+    }
+  ],
+  "omissions": []
+}
