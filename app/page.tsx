@@ -89,7 +89,7 @@ export default function Home() {
                     Capture intent, preferences, budget and timing before your
                     consultant takes over.
                   </p>
-                  <Link className="text-link" href="/real-estate-ai#demo">
+                  <Link className="text-link" href="/real-estate-ai#voice-demo">
                     Try the property agent <Arrow diagonal />
                   </Link>
                 </div>
@@ -130,7 +130,7 @@ export default function Home() {
                     Answer clinic questions, collect appointment preferences and
                     route requests to reception.
                   </p>
-                  <Link className="text-link" href="/healthcare-ai#demo">
+                  <Link className="text-link" href="/healthcare-ai#voice-demo">
                     Try the receptionist <Arrow diagonal />
                   </Link>
                 </div>
@@ -153,8 +153,7 @@ export default function Home() {
             </article>
           </div>
           <p className="agent-section-note">
-            Local simulation. No microphone, live voice connection, CRM save or
-            real booking.
+            Each demo page shows its voice connection status. Scripted walkthroughs remain available. No CRM save or real booking.
           </p>
         </div>
       </section>

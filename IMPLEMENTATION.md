@@ -1,5 +1,9 @@
 # Local preview implementation
 
+## Sarvam follow-on authorization — October 21
+
+User authorized managed Sarvam agent creation and browser voice integration. Both agents now have committed version 1. SDK UI/backend and 18 passing tests are implemented. The separate managed-agent key returned HTTP 200 for both agents. Voice is enabled locally, and bounded streaming checks received connection acknowledgement and non-silent audio for both agents. Physical microphone and conversation quality still need user testing. n8n/GHL stay disconnected. See docs/SARVAM_INTEGRATION.md for IDs, evidence and exact remaining steps. Earlier disconnected-preview contract below is historical.
+
 Approved October 21, 2026: build the approved homepage and two agent pages locally; initialize Git/GitHub and an isolated worktree. Sarvam, n8n and GoHighLevel must remain disconnected.
 
 ## Completion contract

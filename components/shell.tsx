@@ -26,7 +26,7 @@ export function Header() {
         <span className="status-dot" />
         Local preview{" "}
         <span className="preview-detail">
-          · Simulated walkthroughs. All integrations disconnected.
+          · Voice demos and scripted walkthroughs. CRM not connected.
         </span>
       </div>
       <header className="site-header">

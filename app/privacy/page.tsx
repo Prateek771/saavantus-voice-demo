@@ -8,21 +8,28 @@ export default function Privacy() {
         Your data in this <em>preview.</em>
       </h1>
       <p>
-        This notice describes the disconnected local application you are trying.
-        It is not the privacy policy for a future live voice service.
+        This notice describes the local Saavantus demo. Please use fictional
+        information only.
       </p>
-      <h2>No voice or CRM connection</h2>
+      <h2>Voice conversations</h2>
       <p>
-        The preview never requests microphone access. Sarvam, n8n and
-        GoHighLevel are disconnected. The conversation is a prewritten script;
-        no AI model processes your input.
+        When voice setup is available, selecting Start voice demo after the
+        disclosure requests microphone permission. Audio streams to Sarvam for
+        AI processing; Sarvam may retain recordings, transcripts and extracted
+        preferences according to the workspace settings. Do not share real
+        contact, identity, payment or medical information. End conversation
+        stops capture. The app uses a random session identifier, not your phone
+        number or email. n8n and GoHighLevel remain disconnected.
       </p>
       <h2>Fictional choices stay in the page</h2>
       <p>
         Scenario preferences, selected times and the local business brief are
         held in memory. They are not written to a database, cookies or browser
         storage. Reset clears the walkthrough. Reloading the page clears its
-        local state.
+        local state. The separate scripted walkthrough does not capture audio or
+        send your choices to Sarvam. A live transcript stays in page memory
+        until you reload or start another conversation; that does not delete any
+        provider-held record.
       </p>
       <h2>Downloads are your choice</h2>
       <p>
@@ -39,9 +46,9 @@ export default function Privacy() {
       </p>
       <h2>Before a live release</h2>
       <p>
-        Provider processing, recording, retention, consent and access policies
-        must be defined and reviewed before connecting real services. Please do
-        not enter personal, patient or medical information into this preview.
+        Workspace recording and retention settings must be reviewed before a
+        public release or use with real customer data. This local demonstration
+        is not a healthcare service or a production privacy policy.
       </p>
       <Link className="button secondary" href="/">
         Back to the homepage

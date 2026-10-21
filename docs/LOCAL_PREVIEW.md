@@ -8,7 +8,9 @@ For the production preview: `npm run build`, then `npm start`. Only one server m
 
 Routes: `/`, `/real-estate-ai`, `/healthcare-ai`, `/contact`, `/privacy`, `/terms`.
 
-On either industry page:
+For live voice on either industry page, choose English or Hindi in the voice panel, read and check the fictional-data consent, select Start voice demo, and allow the microphone in your browser. End demo stops the session; the maximum is three minutes. Sarvam processes audio and may retain recordings/transcripts. Use fictional information. No CRM or calendar is connected.
+
+For the separate scripted walkthrough:
 
 1. Choose English or Hindi and optionally customise the fictional scenario.
 2. Start the walkthrough. Use Next exchange to move through four scripted exchanges.
@@ -20,11 +22,11 @@ The healthcare walkthrough demonstrates appointment requests only. The broader c
 
 ## Boundaries
 
-No provider SDK, API route, AI call, audio capture, outbound message, CRM write, live calendar, analytics, database or browser persistence is implemented. Browser media permissions are disabled; the Content Security Policy restricts connections to this app. Fonts and generated architectural images are served locally. State is held in React memory; JSON export is an explicit local download.
+The official Sarvam browser SDK connects through a server-only signing proxy. Microphone access is requested only on Start after consent. The key remains in the ignored server environment; CSP permits only the configured Sarvam socket origin. No n8n workflow, CRM write, live calendar or database persistence is connected. Scripted walkthrough state stays in React memory, and JSON export is an explicit local download. Live audio/transcripts are handled by Sarvam under its account settings.
 
-The interface is English; the Hindi option switches the scripted dialogue. User-selected fixture values such as locations remain in their supplied form. No quality claim about live Hindi/English voice is made.
+The interface is English. Both live agents support English/Hindi; the separate walkthrough language switches its scripted dialogue. Real microphone conversation quality is not yet verified. Bounded synthetic streaming checks passed for both agents.
 
-Keep real secrets out of this preview. The worktree `.env` is a blank template with local mode and telemetry disabled. The original filled `.env` is preserved in the planning checkout and is not copied or committed. Future credentials have server-only placeholder names in `.env.example`; no current application code reads them. Setting a credential does not enable an integration.
+The original filled `.env` is preserved. The worktree `.env` contains the separate managed Voice Agents key and pinned IDs/version. It is ignored by Git. `.env.example` is a credential-free template; follow docs/SARVAM_INTEGRATION.md before enabling voice in another checkout.
 
 ## Repository
 
@@ -46,4 +48,4 @@ Private GitHub: https://github.com/Prateek771/saavantus-voice-demo
 
 `npm test` runs the workflow tests. `npm run typecheck` checks TypeScript. `npm run build` creates production output. The framework setup follows the current official Next.js installation documentation: https://nextjs.org/docs/app/getting-started/installation.
 
-Future implementation requires separate permission and verified provider contracts. Retain Sarvam for voice, n8n Cloud for actions, GoHighLevel for CRM/native calendars, and Hostinger for the eventual deployment. Do not enable live operations from this preview's sample controls.
+Connecting n8n/GoHighLevel or deploying publicly requires separate authorization and verified provider contracts. Retain Sarvam for voice, n8n Cloud for actions, GoHighLevel for CRM/native calendars, and Hostinger for the eventual deployment. Do not enable live operations from this preview's sample controls.

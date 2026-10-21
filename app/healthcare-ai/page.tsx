@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Demo } from "@/components/demo";
+import { VoiceDemo } from "@/components/voice-demo";
 import {
   Arrow,
   ClosingCTA,
@@ -36,6 +37,7 @@ export default function HealthcarePage() {
         </p>
       </IndustryHero>
       <div className="industry-demo">
+        <VoiceDemo industry="healthcare" />
         <Demo industry="healthcare" />
       </div>
       <Features

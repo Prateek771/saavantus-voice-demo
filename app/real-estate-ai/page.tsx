@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Demo } from "@/components/demo";
+import { VoiceDemo } from "@/components/voice-demo";
 import {
   ClosingCTA,
   FAQs,
@@ -34,6 +35,7 @@ export default function RealEstatePage() {
         </p>
       </IndustryHero>
       <div className="industry-demo">
+        <VoiceDemo industry="real-estate" />
         <Demo industry="real-estate" />
       </div>
       <Features

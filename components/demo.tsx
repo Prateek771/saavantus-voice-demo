@@ -510,7 +510,7 @@ export function Demo({ industry }: { industry: Industry }) {
             <p>No contact, opportunity or calendar event has been saved.</p>
             <div className="provider-status">
               <span>
-                Sarvam <b>Off</b>
+                Audio <b>Not used in this walkthrough</b>
               </span>
               <span>
                 n8n <b>Off</b>

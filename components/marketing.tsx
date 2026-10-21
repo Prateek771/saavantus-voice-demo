@@ -159,9 +159,9 @@ export function IndustryHero({
             </h1>
             {children}
             <p className="industry-language">
-              English and Hindi examples · Local simulation
+              English and Hindi · Voice setup shown below
             </p>
-            <a className="text-link" href="#demo">
+            <a className="text-link" href="#voice-demo">
               Explore the demo <Arrow />
             </a>
           </div>
