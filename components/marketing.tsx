@@ -304,7 +304,7 @@ export function IntegrationBand({
               </span>
             </div>
             <Link className="text-link" href="/contact">
-              Discuss your workflow <Arrow diagonal />
+              Contact us <Arrow diagonal />
             </Link>
           </div>
         )}
@@ -342,7 +342,7 @@ export function ClosingCTA({ children }: { children: ReactNode }) {
       <div className="container">
         <h2>{children}</h2>
         <Link className="button" href="/contact">
-          Discuss your workflow <Arrow />
+          Contact us <Arrow />
         </Link>
       </div>
     </section>

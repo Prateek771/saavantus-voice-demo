@@ -18,7 +18,7 @@ web
 - Initial market: India. Initial voice languages: English and Hindi.
 - Visitors should be able to speak to the agents directly in the browser.
 - Copy should be concise, specific, and sufficiently detailed to explain the product.
-- Current authorization: build the approved website locally in its private GitHub repository/worktree, create both Sarvam managed agents and connect browser voice. n8n and GoHighLevel remain disconnected. No public deployment is authorised.
+- Current authorization: redesign the local website with a full-width animated voice hero, Lenis scrolling, stronger workflow copy, verified contact footer and local contact intake. Preserve both managed Sarvam agents and their browser voice connection. Prepare the GoHighLevel field/appointment handoff for the next integration stage. n8n and GoHighLevel remain disconnected; no public deployment is authorised.
 
 ## Users and intended outcome
 
@@ -35,6 +35,8 @@ Prospective business customers evaluate the agents by role-playing a property en
 
 ## Current implementation
 
+The homepage redesign replaces the split hero with an animated conversation canvas and explains the existing SaaS 4A Framework (Assess, Architect, Adjust, Automate), verified against saavantus.com. Pinned Lenis smooths wheel scrolling; native touch, reduced-motion preferences, a visible motion pause, visible-by-default text and offscreen animation cleanup preserve usability. Contact intake saves locally with clear status, not to GoHighLevel. Footer contact details are verified against the existing site; no testimonials or client results have been invented.
+
 A Next.js/TypeScript local preview now implements the three approved pages and deterministic walkthroughs, with sample preferences and appointment/CRM outcomes. Contact/privacy/terms are truthful preview routes. Both Sarvam agents are committed at version 1 and connected through the official browser SDK and a server-only signing proxy. Synthetic streaming checks passed; physical microphone and conversation quality remain unverified. No live scheduling or CRM persistence is implemented. See docs/LOCAL_PREVIEW.md and docs/VERIFICATION.md.
 
 ## Future connected direction — still pending
@@ -43,7 +45,7 @@ A single GitHub-owned Next.js/TypeScript application, with marketing pages, a sh
 
 ## Open decisions
 
-Visual/copy direction is approved; the private repository is Prateek771/saavantus-voice-demo. Remaining connected-stage decisions: Hostinger plan, monthly demo budget, source property and clinic information, GoHighLevel sub-account/pipeline/field/calendar mapping, supported handoff destination, qualified clinical reviewer, and approved recording/retention behavior. No customer statistics, certifications, testimonials or working integrations are established by this product record.
+Visual/copy direction is approved; the private repository is Prateek771/saavantus-voice-demo. Remaining connected-stage decisions: Hostinger plan, monthly demo budget, source property and clinic information, GoHighLevel sub-account/pipeline/field/calendar mapping, supported handoff destination, qualified clinical reviewer, and approved recording/retention behavior. No customer statistics, certifications or testimonials are established by this product record. Sarvam runtime connectivity is verified; CRM and live calendar operations remain unconnected.
 
 ## Product principles
 

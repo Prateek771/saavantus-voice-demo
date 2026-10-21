@@ -3,6 +3,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "./ui";
+import { siteContact } from "@/lib/site-contact";
+import "@/app/footer.css";
 export function Header() {
   const path = usePathname();
   const [open, setOpen] = useState(false);
@@ -71,7 +73,7 @@ export function Header() {
               className="button secondary nav-cta"
               onClick={() => setOpen(false)}
             >
-              Discuss your workflow <Icon name="arrow" size={16} />
+              Contact us <Icon name="arrow" size={16} />
             </Link>
           </nav>
         </div>
@@ -81,22 +83,51 @@ export function Header() {
 }
 export function Footer() {
   return (
-    <footer className="site-footer container">
-      <div>
-        <Link href="/" className="wordmark">
-          saavantus<span>.</span>
-        </Link>
-        <p>
-          Voice agents. Clear <em>next steps.</em>
-        </p>
-      </div>
-      <div className="footer-bottom">
-        <span>Built for conversations that go somewhere.</span>
-        <nav aria-label="Footer">
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/terms">Terms</Link>
-          <Link href="/contact">Contact</Link>
-        </nav>
+    <footer className="saavantus-footer">
+      <div className="container">
+        <div className="footer-directory">
+          <div className="footer-introduction">
+            <Link href="/" className="wordmark" aria-label="Saavantus home">
+              saavantus<span>.</span>
+            </Link>
+            <p>
+              Voice agents for property enquiries and clinic reception. Designed
+              around the questions your customers ask and the work your team
+              does next.
+            </p>
+            <span className="footer-language">
+              Built for English and Hindi conversations.
+            </span>
+          </div>
+          <nav className="footer-links" aria-label="Explore Saavantus">
+            <h3>Explore</h3>
+            <Link href="/real-estate-ai#voice-demo">Real estate agent</Link>
+            <Link href="/healthcare-ai#voice-demo">
+              Healthcare receptionist
+            </Link>
+            <Link href="/#how-it-works">Our approach</Link>
+            <Link href="/contact">Contact form</Link>
+          </nav>
+          <address className="footer-direct-contact">
+            <h3>Talk to us</h3>
+            <a className="footer-email" href={siteContact.emailHref}>
+              {siteContact.email}
+            </a>
+            {siteContact.phones.map((phone) => (
+              <a href={phone.href} key={phone.href}>
+                {phone.label}
+              </a>
+            ))}
+          </address>
+        </div>
+        <div className="footer-legal">
+          <span>© 2026 Saavantus Excellence</span>
+          <nav aria-label="Legal">
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+          </nav>
+          <span>Local preview · CRM and booking not connected.</span>
+        </div>
       </div>
     </footer>
   );

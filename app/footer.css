@@ -1,0 +1,126 @@
+.saavantus-footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding-block: 74px 24px;
+}
+.footer-directory {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 54px;
+  padding-block: 52px 56px;
+}
+.footer-introduction .wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  min-height: 44px;
+}
+.footer-introduction p {
+  max-width: 36ch;
+  margin-block: 18px 24px;
+  color: #d1d6d4;
+  font-size: 15px;
+  line-height: 1.75;
+}
+.footer-language {
+  display: block;
+  color: #d1d6d4;
+  font-size: 13px;
+}
+.footer-directory h3 {
+  margin-block: 4px 18px;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.footer-links,
+.footer-direct-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-style: normal;
+}
+.footer-links a,
+.footer-direct-contact a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #d1d6d4;
+  font-size: 15px;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  transition:
+    color 180ms ease-out,
+    text-decoration-color 180ms ease-out;
+}
+.footer-direct-contact .footer-email {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.footer-links a:hover,
+.footer-direct-contact a:hover {
+  color: var(--paper);
+  text-decoration-color: currentColor;
+}
+.footer-legal {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 36px;
+  border-top: 1px solid #4c595c;
+  padding-top: 18px;
+  color: #c3ccca;
+  font-size: 12px;
+}
+.footer-legal > span:last-child {
+  margin-left: auto;
+}
+.footer-legal nav {
+  display: flex;
+  gap: 24px;
+}
+.footer-legal a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.saavantus-footer :focus-visible {
+  outline-color: #f1a08d;
+}
+@media (max-width: 900px) {
+  .footer-directory {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px 42px;
+  }
+  .footer-introduction {
+    grid-column: 1 / -1;
+  }
+  .footer-introduction p {
+    max-width: 55ch;
+  }
+  .footer-legal > span:last-child {
+    margin-left: 0;
+  }
+}
+@media (max-width: 600px) {
+  .saavantus-footer {
+    padding-top: 48px;
+  }
+  .footer-directory {
+    grid-template-columns: minmax(0, 1fr);
+    padding-block: 36px;
+    gap: 32px;
+  }
+  .footer-directory h3 {
+    margin-bottom: 10px;
+  }
+  .footer-legal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .saavantus-footer a {
+    transition: none;
+  }
+}

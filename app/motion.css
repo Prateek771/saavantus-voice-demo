@@ -1,0 +1,50 @@
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+html.lenis {
+  scroll-behavior: auto !important;
+}
+html[data-motion="off"] {
+  scroll-behavior: auto;
+}
+[data-reveal] {
+  opacity: 1;
+}
+html[data-motion="on"] .reveal-entered {
+  animation: editorial-reveal 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes editorial-reveal {
+  from {
+    opacity: 0.65;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+html[data-motion="off"] .wave-ribbon,
+html[data-motion="off"] .signal-bar,
+html[data-page-hidden="true"] .wave-ribbon,
+html[data-page-hidden="true"] .signal-bar,
+.voice-hero[data-visible="false"] .wave-ribbon,
+.voice-hero[data-visible="false"] .signal-bar {
+  animation-play-state: paused;
+}
+html[data-motion="off"] .reveal-entered {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  .wave-ribbon,
+  .signal-bar,
+  .reveal-entered {
+    animation: none !important;
+  }
+  .signal-bar {
+    transform: none;
+  }
+}

@@ -2,9 +2,13 @@
 
 ## Running local preview — current status
 
-The approved design is now a working Next.js/TypeScript local application. Start with [the local preview guide](docs/LOCAL_PREVIEW.md). Run `npm ci` then `npm run dev`; open http://127.0.0.1:3100.
+The redesigned website is a working Next.js/TypeScript local application. Start with [the local preview guide](docs/LOCAL_PREVIEW.md). Run `npm ci` then `npm run dev`; open http://127.0.0.1:3100.
 
-Homepage and both industry pages include responsive navigation, English/Hindi scripted walkthroughs, configurable fictional preferences, sample appointment selection, simulated CRM records, reschedule/cancel/reset, error recovery and local JSON export. Contact, privacy and terms preview routes are present.
+The homepage now uses a full-width animated voice composition, stronger workflow copy and the existing SaaS 4A Framework: **Assess → Architect → Adjust → Automate**. Lenis enhances wheel scrolling; touch scrolling stays native. Decorative motion can be paused and respects reduced-motion preferences. The waveform is illustrative and does not activate the microphone.
+
+Both industry pages retain English/Hindi scripted walkthroughs, configurable fictional preferences, sample appointment selection, simulated CRM records, reschedule/cancel/reset, error recovery and local JSON export. The navigation and footer now lead to a contact form, with email and phone details verified from the existing official site. No testimonials or client results have been invented.
+
+**Contact submissions save locally only.** The form records contact details, requirements, consent and an optional callback preference in ignored server files under `.data/contact-requests/`. It sends no email or CRM notification and books no appointment. Use fictional information while testing. See [contact storage and future CRM mapping](docs/CONTACT_INTAKE.md).
 
 **Sarvam voice is enabled in this local preview. n8n and GoHighLevel remain disconnected; no real bookings or CRM saves occur.** Both industry pages offer a consent-gated voice panel in addition to the separate scripted walkthrough. The managed-agent key stays in the ignored server environment. All fonts/images are local.
 
@@ -68,4 +72,4 @@ The official Sarvam browser SDK is documented and proposed, but has not been imp
 
 ## Sarvam integration status
 
-Both managed agents are committed at version 1. The separate Voice Agents key passed session signing (HTTP 200) for both agents. Bounded streaming checks passed connection acknowledgement and non-silent audio using synthetic caller silence, for real estate in English and healthcare in Hindi. Eighteen tests, TypeScript and the production build passed. Physical microphone, speech quality and interruption testing remain for the user. See [integration evidence and limitations](docs/SARVAM_INTEGRATION.md).
+Both managed agents are committed at version 1. The separate Voice Agents key passed session signing (HTTP 200) for both agents. Bounded streaming checks passed connection acknowledgement and non-silent audio using synthetic caller silence, for real estate in English and healthcare in Hindi. At the voice-integration checkpoint, eighteen tests, TypeScript and the production build passed. Physical microphone, speech quality and interruption testing remain for the user. See [integration evidence and limitations](docs/SARVAM_INTEGRATION.md).

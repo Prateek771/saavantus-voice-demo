@@ -8,8 +8,8 @@ export default function Privacy() {
         Your data in this <em>preview.</em>
       </h1>
       <p>
-        This notice describes the local Saavantus demo. Please use fictional
-        information only.
+        This notice describes the local Saavantus demo and its contact form.
+        Please use fictional information while testing.
       </p>
       <h2>Voice conversations</h2>
       <p>
@@ -23,13 +23,30 @@ export default function Privacy() {
       </p>
       <h2>Fictional choices stay in the page</h2>
       <p>
-        Scenario preferences, selected times and the local business brief are
-        held in memory. They are not written to a database, cookies or browser
-        storage. Reset clears the walkthrough. Reloading the page clears its
-        local state. The separate scripted walkthrough does not capture audio or
-        send your choices to Sarvam. A live transcript stays in page memory
-        until you reload or start another conversation; that does not delete any
+        Scripted scenario preferences and selected sample times are held in
+        memory. They are not written to a database, cookies or browser storage.
+        Reset clears the walkthrough. Reloading the page clears its local state.
+        The separate scripted walkthrough does not capture audio or send your
+        choices to Sarvam. A live transcript stays in page memory until you
+        reload or start another conversation; that does not delete any
         provider-held record.
+      </p>
+      <h2>Contact enquiries stay on this computer</h2>
+      <p>
+        The contact form saves the details you submit: name, business, email,
+        optional phone, industry, requirements, optional preferred callback
+        time, consent and submission time. They are stored in private local
+        files on the computer running this preview, outside Git source control.
+        The owner can review them locally. They are not emailed or sent to
+        Sarvam, n8n or GoHighLevel. A callback preference is not a confirmed
+        appointment.
+      </p>
+      <p>
+        Local files remain until the owner deletes them; this preview has no
+        automatic retention schedule or public enquiry-list endpoint. Do not
+        submit patient records, identity documents or payment information. A
+        live contact service needs approved retention, access and delivery
+        arrangements before public release.
       </p>
       <h2>Downloads are your choice</h2>
       <p>
