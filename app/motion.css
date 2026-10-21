@@ -26,10 +26,13 @@ html[data-motion="on"] .reveal-entered {
 }
 html[data-motion="off"] .wave-ribbon,
 html[data-motion="off"] .signal-bar,
+html[data-motion="off"] .hero-orb,
 html[data-page-hidden="true"] .wave-ribbon,
 html[data-page-hidden="true"] .signal-bar,
+html[data-page-hidden="true"] .hero-orb,
 .voice-hero[data-visible="false"] .wave-ribbon,
-.voice-hero[data-visible="false"] .signal-bar {
+.voice-hero[data-visible="false"] .signal-bar,
+.voice-hero[data-visible="false"] .hero-orb {
   animation-play-state: paused;
 }
 html[data-motion="off"] .reveal-entered {
@@ -41,6 +44,7 @@ html[data-motion="off"] .reveal-entered {
   }
   .wave-ribbon,
   .signal-bar,
+  .hero-orb,
   .reveal-entered {
     animation: none !important;
   }

@@ -1,15 +1,15 @@
 :root {
   color-scheme: light;
-  --paper: #fafbfc;
-  --ink: #252c39;
-  --body: #465062;
-  --blue: #245ad4;
-  --red: var(--blue);
-  --accent: #69b7ed;
-  --muted: #606a79;
-  --line: #e3e8ef;
-  --soft: #f1f5f9;
-  --white: #ffffff;
+  --paper: #f7f4ee;
+  --ink: #17242a;
+  --body: #39464b;
+  --blue: var(--red);
+  --red: #b83223;
+  --accent: #da5a47;
+  --muted: #60676b;
+  --line: #dfdad2;
+  --soft: #f0e4dc;
+  --white: #fffdf9;
   --error: #b42332;
   --error-soft: #fff1f2;
   --success: #237154;
@@ -21,7 +21,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 110px;
-  scrollbar-color: #b5c3d4 var(--paper);
+  scrollbar-color: #b5a79c var(--paper);
   scrollbar-width: thin;
 }
 body {
@@ -34,7 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
-  background: #cce7fa;
+  background: #efd1c7;
   color: var(--ink);
 }
 :focus-visible {
@@ -92,7 +92,7 @@ select option {
   background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: #b5c3d4;
+  background: #b5a79c;
   border: 2px solid var(--paper);
   border-radius: 8px;
 }
@@ -154,7 +154,7 @@ em {
     transform 0.2s;
 }
 .button:hover:not(:disabled) {
-  background: #1c49b4;
+  background: #99291d;
   transform: translateY(-1px);
 }
 .button.secondary {
@@ -295,8 +295,8 @@ em {
   height: 64px;
   width: 64px;
   border-radius: 50%;
-  background: #e8f4fd;
-  border: 1px solid #b9d8ef;
+  background: #f3e0d5;
+  border: 1px solid #e2c0ae;
 }
 .waveform.is-active svg {
   animation: wave-breathe 3s ease-in-out infinite;
@@ -355,7 +355,7 @@ em {
     right: 0;
     background: var(--paper);
     padding: 20px 24px;
-    box-shadow: 0 15px 20px #252c3908;
+    box-shadow: 0 15px 20px #17242a08;
     border-bottom: 1px solid var(--line);
     align-items: stretch;
     gap: 10px;

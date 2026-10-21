@@ -37,7 +37,7 @@
   content: none;
 }
 .nav-links .nav-cta:hover {
-  border-color: #c5d0de;
+  border-color: #d5c8bc;
   background: var(--soft);
 }
 .saavantus-footer {
@@ -156,7 +156,7 @@
     padding: 20px 24px 24px;
     background: var(--paper);
     border-color: var(--line);
-    box-shadow: 0 12px 20px #252c3908;
+    box-shadow: 0 12px 20px #17242a08;
   }
   .nav-links .nav-cta {
     margin: 8px 0 0;

@@ -2,31 +2,48 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 76px 28px 42px;
+  padding: 82px 28px 64px;
   background: var(--paper);
   color: var(--ink);
+}
+.voice-hero-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 46px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .voice-hero-copy {
   position: relative;
   z-index: 1;
-  max-width: 1100px;
-  text-align: center;
-  margin: auto;
+  padding-bottom: 32px;
+}
+.voice-hero-topline {
+  margin-bottom: 25px;
+}
+.voice-hero-topline p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.035em;
 }
 .voice-hero-copy h1 {
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  font-weight: 300;
-  line-height: 1.08;
+  font-size: clamp(2.7rem, 4.1vw, 3.55rem);
+  font-weight: 500;
+  line-height: 1.1;
   letter-spacing: -0.035em;
-  margin: 0 auto 26px;
+  margin: 0 0 25px;
+  text-wrap: balance;
 }
 .voice-hero-copy h1 em {
-  color: var(--blue);
-  font-weight: 300;
+  color: var(--ink);
+  font-weight: 400;
+  font-style: italic;
 }
 .voice-hero-copy > p {
-  max-width: 610px;
-  margin: 0 auto;
+  max-width: 480px;
+  margin: 0;
   font-size: 18px;
   color: var(--body);
   line-height: 1.65;
@@ -35,8 +52,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 27px;
+  gap: 24px;
   margin-top: 29px;
 }
 .hero-contact {
@@ -46,60 +62,21 @@
   min-height: 48px;
   font-size: 15px;
   color: var(--body);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
 }
 .hero-contact:hover {
-  color: var(--blue);
+  color: var(--red);
 }
 .voice-product-scene {
   position: relative;
-  max-width: 1200px;
-  margin: 30px auto 0;
-  padding-top: 125px;
+  min-width: 0;
 }
-.hero-wave-field {
-  pointer-events: none;
+.hero-scene-controls {
   position: absolute;
-  z-index: -1;
-  inset: -20px -14% auto;
-  height: 280px;
-  color: var(--accent);
-  opacity: 0.75;
-}
-.hero-wave-field svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-.wave-ribbon {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: voice-ribbon 7s ease-in-out infinite alternate;
-  animation-delay: var(--wave-delay);
-}
-@keyframes voice-ribbon {
-  from {
-    transform: translateX(-14px) scaleY(0.76);
-  }
-  to {
-    transform: translateX(14px) scaleY(1.2);
-  }
-}
-.voice-hero-topline {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 15px 25px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-bottom: 0;
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-.voice-hero-topline p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 12px;
+  top: -25px;
+  right: 0;
+  z-index: 2;
 }
 .motion-toggle {
   display: inline-flex;
@@ -108,7 +85,7 @@
   min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--white);
+  background: transparent;
   color: var(--muted);
   padding: 8px 11px;
   font-size: 12px;
@@ -122,41 +99,94 @@
   opacity: 1;
   color: var(--muted);
 }
+.hero-wave-field {
+  pointer-events: none;
+  position: relative;
+  width: calc(100% + 80px);
+  margin: -12px -40px -12px;
+  color: var(--accent);
+}
+.hero-wave-field svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.wave-ribbon {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: voice-ribbon 7s ease-in-out infinite alternate;
+  animation-delay: var(--wave-delay);
+}
+@keyframes voice-ribbon {
+  from {
+    transform: translateX(-5px) scaleY(0.86);
+  }
+  to {
+    transform: translateX(5px) scaleY(1.12);
+  }
+}
+.hero-orb {
+  transform-origin: 330px 160px;
+  animation: hero-orb-float 5.5s ease-in-out infinite alternate;
+}
+@keyframes hero-orb-float {
+  from {
+    transform: translateY(4px) rotate(-3deg);
+  }
+  to {
+    transform: translateY(-7px) rotate(3deg);
+  }
+}
 .conversation-map {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 26px 1fr 26px 1fr;
-  align-items: center;
-  gap: 22px;
-  padding: 30px 34px 35px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: 0 0 var(--radius) var(--radius);
+  grid-template-columns: 1.2fr 20px 1fr;
+  gap: 22px 17px;
+  align-items: start;
+  padding: 0 12px;
+}
+.conversation-source {
+  grid-column: 1 / -1;
 }
 .map-label {
   display: block;
-  font-size: 12px;
+  font-size: 11px;
   color: var(--muted);
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
-.conversation-source p,
-.conversation-outcome p {
-  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+.conversation-source > .map-label {
+  margin-left: 16px;
+}
+.conversation-quote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 17px 19px;
+  background: var(--soft);
+  border-radius: 12px;
+}
+.conversation-source p {
+  font-size: 16px;
   line-height: 1.45;
   font-weight: 400;
   margin: 0;
 }
+.conversation-source p br {
+  display: none;
+}
 .voice-signal {
   display: flex;
   align-items: center;
-  gap: 4px;
-  height: 32px;
-  margin-top: 16px;
+  gap: 3px;
+  height: 27px;
+  flex-shrink: 0;
 }
 .signal-bar {
   display: block;
-  width: 2px;
-  background: var(--blue);
+  width: 1.5px;
+  background: var(--accent);
   transform-origin: center;
   animation: signal-live 1.1s ease-in-out infinite alternate;
   animation-delay: var(--bar-delay);
@@ -170,20 +200,21 @@
   }
 }
 .map-connector {
-  color: #8da6c2;
+  color: var(--accent);
+  padding-top: 37px;
 }
 .map-connector svg {
-  width: 24px;
+  width: 19px;
 }
 .conversation-details dl {
   margin: 0;
-  font-size: 13px;
+  font-size: 12px;
 }
 .conversation-details dl > div {
   display: flex;
   justify-content: space-between;
-  gap: 12px;
-  padding: 7px 0;
+  gap: 10px;
+  padding: 5px 0;
   border-bottom: 1px solid var(--line);
 }
 .conversation-details dl > div:last-child {
@@ -196,21 +227,26 @@
   margin: 0;
   text-align: right;
 }
+.conversation-outcome p {
+  font-size: 16px;
+  line-height: 1.45;
+  margin: 0;
+}
 .conversation-outcome em {
-  color: var(--blue);
+  color: var(--ink);
 }
 .map-status {
   display: inline-block;
   color: var(--muted);
-  margin-top: 22px;
-  font-size: 12px;
+  margin-top: 10px;
+  font-size: 11px;
 }
 .hero-visual-note {
   max-width: none;
   text-align: center;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
-  margin: 18px 0 0;
+  margin: 22px 0 0;
 }
 .home-introduction {
   display: grid;
@@ -328,7 +364,7 @@
 }
 .workflow-sequence li {
   padding-top: 22px;
-  border-top: 1px solid #ced8e4;
+  border-top: 1px solid var(--line);
 }
 .workflow-step {
   font-variant-numeric: tabular-nums;
@@ -348,7 +384,7 @@
   font-size: 15px;
 }
 .connection-note {
-  border-top: 1px solid #ced8e4;
+  border-top: 1px solid var(--line);
   padding-top: 28px;
   display: flex;
   align-items: start;
@@ -427,7 +463,7 @@
   margin: 0;
 }
 .home-contact-band {
-  background: #edf4fc;
+  background: var(--soft);
   padding: 76px 0;
 }
 .home-contact-band > .container {
@@ -449,17 +485,6 @@
   min-width: 170px;
 }
 @media (max-width: 1050px) {
-  .voice-hero {
-    padding-top: 64px;
-  }
-  .conversation-map {
-    gap: 14px;
-    padding-inline: 24px;
-    grid-template-columns: 1fr 20px 1fr 20px 1fr;
-  }
-  .map-connector svg {
-    width: 20px;
-  }
   .home-introduction {
     gap: 52px;
   }
@@ -471,85 +496,6 @@
   }
 }
 @media (max-width: 760px) {
-  .voice-hero {
-    padding: 50px 22px 22px;
-  }
-  .voice-hero-copy h1 {
-    font-size: clamp(2.65rem, 8.8vw, 3.8rem);
-    line-height: 1.12;
-    letter-spacing: -0.03em;
-  }
-  .voice-hero-copy > p {
-    font-size: 16px;
-  }
-  .voice-hero-actions {
-    gap: 12px;
-    margin-top: 25px;
-  }
-  .voice-hero-actions .button {
-    width: 100%;
-  }
-  .hero-contact {
-    font-size: 14px;
-  }
-  .voice-product-scene {
-    padding-top: 90px;
-    margin-top: 16px;
-  }
-  .hero-wave-field {
-    inset: -15px -70% auto;
-    height: 230px;
-    opacity: 0.7;
-  }
-  .voice-hero-topline {
-    gap: 12px;
-    padding: 12px 17px;
-  }
-  .voice-hero-topline p {
-    max-width: 180px;
-    font-size: 11px;
-  }
-  .motion-toggle {
-    font-size: 11px;
-    padding-inline: 8px;
-  }
-  .conversation-map {
-    grid-template-columns: 1fr;
-    padding: 24px 22px;
-    gap: 21px;
-  }
-  .conversation-source p,
-  .conversation-outcome p {
-    font-size: 20px;
-  }
-  .conversation-source p br,
-  .conversation-outcome p br {
-    display: none;
-  }
-  .voice-signal {
-    margin-top: 10px;
-    height: 30px;
-  }
-  .map-connector {
-    display: none;
-  }
-  .conversation-details,
-  .conversation-outcome {
-    border-top: 1px solid var(--line);
-    padding-top: 20px;
-  }
-  .map-label {
-    font-size: 11px;
-    margin-bottom: 9px;
-  }
-  .map-status {
-    margin-top: 12px;
-    font-size: 11px;
-  }
-  .hero-visual-note {
-    font-size: 10px;
-    margin-top: 16px;
-  }
   .home-introduction {
     grid-template-columns: 1fr;
     gap: 26px;
@@ -656,5 +602,148 @@
   }
   .home-contact-band .button {
     margin-top: 27px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .voice-hero {
+    padding-top: 68px;
+  }
+  .voice-hero-inner {
+    gap: 32px;
+  }
+  .voice-hero-copy h1 {
+    font-size: clamp(2.55rem, 4.2vw, 3.2rem);
+  }
+  .voice-hero-copy > p {
+    font-size: 16px;
+  }
+  .voice-hero-actions {
+    gap: 13px;
+  }
+  .hero-contact {
+    font-size: 14px;
+  }
+  .conversation-map {
+    gap: 20px 12px;
+    padding-inline: 0;
+  }
+  .conversation-source p {
+    font-size: 15px;
+  }
+  .conversation-quote {
+    padding: 15px;
+  }
+  .conversation-details dl {
+    font-size: 11px;
+  }
+  .conversation-outcome p {
+    font-size: 15px;
+  }
+  .map-label,
+  .map-status {
+    font-size: 10px;
+  }
+}
+@media (max-width: 760px) {
+  .voice-hero {
+    padding: 48px 22px 36px;
+  }
+  .voice-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .voice-hero-copy {
+    padding-bottom: 0;
+  }
+  .voice-hero-topline {
+    margin-bottom: 20px;
+  }
+  .voice-hero-topline p {
+    font-size: 11px;
+    max-width: 300px;
+  }
+  .voice-hero-copy h1 {
+    max-width: 600px;
+    font-size: clamp(2.65rem, 8.3vw, 3.55rem);
+    line-height: 1.12;
+  }
+  .voice-hero-copy > p {
+    max-width: 530px;
+    font-size: 16px;
+  }
+  .voice-hero-actions {
+    gap: 18px;
+    margin-top: 25px;
+  }
+  .voice-hero-actions .button {
+    width: auto;
+  }
+  .voice-product-scene {
+    padding-top: 35px;
+    max-width: 560px;
+    width: 100%;
+    margin: auto;
+  }
+  .hero-scene-controls {
+    top: 8px;
+  }
+  .motion-toggle {
+    font-size: 11px;
+    padding-inline: 9px;
+  }
+  .hero-wave-field {
+    width: calc(100% + 44px);
+    margin: -8px -22px -2px;
+  }
+  .conversation-map {
+    grid-template-columns: 1.2fr 16px 1fr;
+    gap: 20px 12px;
+  }
+  .conversation-source p {
+    font-size: 15px;
+  }
+  .conversation-outcome p {
+    font-size: 15px;
+  }
+  .map-connector {
+    padding-top: 35px;
+  }
+  .map-connector svg {
+    width: 16px;
+  }
+  .map-label {
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+  .conversation-details dl {
+    font-size: 11px;
+  }
+  .map-status {
+    margin-top: 9px;
+    font-size: 10px;
+  }
+  .hero-visual-note {
+    font-size: 10px;
+    margin-top: 20px;
+  }
+}
+@media (max-width: 380px) {
+  .voice-hero-actions {
+    gap: 9px;
+  }
+  .voice-hero-actions .button {
+    padding-inline: 16px;
+  }
+  .hero-contact {
+    font-size: 13px;
+    gap: 6px;
+  }
+  .conversation-map {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .map-connector {
+    display: none;
   }
 }
