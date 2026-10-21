@@ -16,7 +16,7 @@ web
 - Initial market: India. Initial voice languages: English and Hindi.
 - Visitors should be able to speak to the agents directly in the browser.
 - Copy should be concise, specific, and sufficiently detailed to explain the product.
-- Current authorization: the earlier plan direction is approved; prepare website designs and copy for the homepage and both demo pages, research with REA, and revise the CRM plan. No product implementation, account connections or deployment.
+- Current authorization: build the approved website locally with an app-like simulated workflow; create a private GitHub repository and isolated worktree. Keep Sarvam, n8n and GoHighLevel disconnected. No live integration or deployment is authorised.
 
 ## Users and intended outcome
 Prospective business customers evaluate the agents by role-playing a property enquiry or clinic appointment request. The proposed demo shows both the conversation and the structured result a business team would receive. Public demonstrations and real customer operations are separate environments.
@@ -29,11 +29,15 @@ Prospective business customers evaluate the agents by role-playing a property en
 - Official HighLevel contact/opportunity/calendar documentation; authentic bounded REA static Evidence for selected shipped bundles from both reference sites.
 - Three desktop visual concepts, a mobile layout study and authoritative page copy in WEBSITE_DESIGN_AND_COPY.md; GoHighLevel field/booking design in GOHIGHLEVEL_PLAN.md.
 
-## Approved planning direction — implementation still pending
+## Current implementation
+
+A Next.js/TypeScript local preview now implements the three approved pages and deterministic walkthroughs, with sample preferences and appointment/CRM outcomes. Contact/privacy/terms are truthful preview routes. No voice provider, microphone, live scheduling or persistence is implemented. See docs/LOCAL_PREVIEW.md and docs/VERIFICATION.md.
+
+## Future connected direction — still pending
 A single GitHub-owned Next.js/TypeScript application, with marketing pages, a shared voice-demo component, and short server-side session/proxy routes. Hostinger Node.js hosting is conditional on the actual account plan. Browser audio connects directly to Sarvam using its documented signed connection flow. n8n receives structured actions and results. The future connected flow saves confirmed contact details and enquiry-specific preferences in GoHighLevel and uses native calendar records for appointments. Public role-play remains separate from live CRM writes.
 
 ## Open decisions
-Visual/copy approval, exact GitHub repository/visibility, Hostinger plan, managed Agents workspace/authentication, selected voices, monthly demo budget, source property and clinic information, GoHighLevel sub-account/pipeline/field/calendar mapping, supported handoff destination, qualified clinical reviewer, and approved recording/retention behavior. No customer statistics, certifications, testimonials or working integrations are established by this product record.
+Visual/copy direction is approved; the private repository is Prateek771/saavantus-voice-demo. Remaining connected-stage decisions: Hostinger plan, managed Agents workspace/authentication, selected voices, monthly demo budget, source property and clinic information, GoHighLevel sub-account/pipeline/field/calendar mapping, supported handoff destination, qualified clinical reviewer, and approved recording/retention behavior. No customer statistics, certifications, testimonials or working integrations are established by this product record.
 
 ## Product principles
 - Let visitors try the two products early.

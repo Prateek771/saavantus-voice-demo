@@ -1,5 +1,17 @@
 # N8N (Saavantus )
 
+## Running local preview — current status
+
+The approved design is now a working Next.js/TypeScript local application. Start with [the local preview guide](docs/LOCAL_PREVIEW.md). Run `npm ci` then `npm run dev`; open http://127.0.0.1:3100.
+
+Homepage and both industry pages include responsive navigation, English/Hindi scripted walkthroughs, configurable fictional preferences, sample appointment selection, simulated CRM records, reschedule/cancel/reset, error recovery and local JSON export. Contact, privacy and terms preview routes are present.
+
+**Sarvam, n8n and GoHighLevel are disconnected. No microphone or real booking.** No real credentials are needed. The `.env.example` contains blank server-only placeholders; the app reads none of them. All fonts/images are local.
+
+Repository: https://github.com/Prateek771/saavantus-voice-demo (private). Implementation branch: `feat/local-demo`; `main` preserves the approved planning baseline. See [verification](docs/VERIFICATION.md) and [implementation scope](IMPLEMENTATION.md).
+
+The sections below are the retained historical planning snapshot; the current status above supersedes their earlier “not built” statements.
+
 ## Intended outcome
 A website where visitors can try Sarvam AI voice agents for real estate and healthcare, with n8n Cloud handling the supporting workflows.
 

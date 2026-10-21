@@ -25,3 +25,9 @@ Approved October 21, 2026: build the approved homepage and two agent pages local
 - Default repository visibility: private, to keep unpublished product work private.
 - This is a local simulation, not voice implementation. Keep the future Sarvam/n8n/GoHighLevel boundaries documented without stub endpoints that pretend to connect.
 - Git CLI identity verified as Prateek771. Initial sandbox auth failure was network-related; network-enabled read-only authentication succeeded.
+- Created private repository Prateek771/saavantus-voice-demo, baseline main commit 1336bde; native Codex worktree on feat/local-demo.
+- Completed pages, shared shell, local state machine, scenario controls, sample scheduling/results and supporting routes. Used pinned Next.js/React and self-hosted fonts; no provider SDKs.
+- Tests first failed because the state module did not exist, then six passed. Independent review identified an inappropriate clinic-information option in an appointment-only journey and lost focus across stage changes. Added a failing regression for the former, removed the option and verified 7/7 passing. Reproduced focus on BODY in browser, then fixed stage focus to H2 and verified it after transition.
+- TypeScript and production build pass. Two illustrative architectural images were generated with the built-in image tool; never represent them as real inventory or clinics.
+- Real credential file remains in the planning checkout; only a blank ignored environment template exists in the app worktree. Source audit found no provider requests, environment reads, browser storage or microphone calls.
+- Desktop and 390px mobile browser checks completed. Fixed mobile homepage image/copy overlap, redundant containers and sample-slot labels. Both scripted journeys, Hindi, mobile navigation, error recovery and simulated cancellation were exercised. Verification details and limitations are recorded in docs/VERIFICATION.md.
