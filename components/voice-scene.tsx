@@ -1,21 +1,127 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Arrow } from "@/components/marketing";
-import { MotionToggle } from "@/components/motion-provider";
+import { MotionToggle, useMotionState } from "@/components/motion-provider";
 
 export function VoiceScene() {
   const scene = useRef<HTMLElement>(null);
+  const video = useRef<HTMLVideoElement>(null);
+  const playbackAllowed = useRef(false);
+  const { paused, reduced } = useMotionState();
+  const [inView, setInView] = useState(true);
+  const [pageVisible, setPageVisible] = useState(true);
+  const [mediaFailed, setMediaFailed] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
+  const [hasPlayed, setHasPlayed] = useState(false);
+
   useEffect(() => {
-    if (!scene.current || !window.IntersectionObserver) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (scene.current)
-        scene.current.dataset.visible = String(entry.isIntersecting);
-    });
-    observer.observe(scene.current);
-    return () => observer.disconnect();
+    const visibility = () => setPageVisible(!document.hidden);
+    visibility();
+    document.addEventListener("visibilitychange", visibility);
+    const observer = window.IntersectionObserver
+      ? new IntersectionObserver(([entry]) => {
+          setInView(entry.isIntersecting);
+          if (scene.current)
+            scene.current.dataset.visible = String(entry.isIntersecting);
+        })
+      : undefined;
+    if (scene.current) observer?.observe(scene.current);
+    return () => {
+      observer?.disconnect();
+      document.removeEventListener("visibilitychange", visibility);
+    };
   }, []);
+
+  useEffect(() => {
+    const element = video.current;
+    if (!element) return;
+    let requestCurrent = true;
+    const bounds = scene.current?.getBoundingClientRect();
+    playbackAllowed.current =
+      !paused &&
+      !reduced &&
+      inView &&
+      pageVisible &&
+      !mediaFailed &&
+      !!bounds &&
+      bounds.bottom > 0 &&
+      bounds.top < window.innerHeight &&
+      !document.hidden &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (playbackAllowed.current) {
+      element.muted = true;
+      void element
+        .play()
+        .then(() => {
+          // A pending native play request may settle after a later pause.
+          if (!playbackAllowed.current) element.pause();
+        })
+        .catch((error: unknown) => {
+          if (
+            requestCurrent &&
+            playbackAllowed.current &&
+            !(error instanceof DOMException && error.name === "AbortError")
+          )
+            setAutoplayBlocked(true);
+        });
+    } else {
+      element.pause();
+    }
+    return () => {
+      requestCurrent = false;
+      playbackAllowed.current = false;
+      element.pause();
+    };
+  }, [paused, reduced, inView, pageVisible, mediaFailed]);
+
+  useEffect(() => {
+    const root = scene.current;
+    if (!root) return;
+    const elements = Array.from(
+      root.querySelectorAll<HTMLElement>(".hero-enter"),
+    );
+    const finish = (element: HTMLElement) =>
+      element.classList.add("hero-is-in");
+    if (
+      paused ||
+      reduced ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      elements.forEach(finish);
+      return;
+    }
+    root.dataset.entrance = "on";
+    const handlers = elements.map((element) => {
+      const complete = (event: AnimationEvent) => {
+        if (event.target === element) finish(element);
+      };
+      element.addEventListener("animationend", complete);
+      return () => element.removeEventListener("animationend", complete);
+    });
+    let secondFrame = 0;
+    const firstFrame = requestAnimationFrame(() => {
+      secondFrame = requestAnimationFrame(() => {
+        elements.forEach((element) => {
+          const active = element
+            .getAnimations?.()
+            .some(
+              (animation) =>
+                animation.playState === "running" ||
+                animation.playState === "finished",
+            );
+          if (!active) finish(element);
+        });
+      });
+    });
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      cancelAnimationFrame(secondFrame);
+      handlers.forEach((remove) => remove());
+    };
+  }, [paused, reduced]);
+
   return (
     <section
       className="voice-hero"
@@ -24,24 +130,36 @@ export function VoiceScene() {
     >
       <div className="voice-hero-inner">
         <div className="voice-hero-copy">
-          <div className="voice-hero-topline">
+          <div className="voice-hero-topline hero-enter hero-enter-pop">
             <p>Built for Indian businesses. Spoken in English & Hindi.</p>
           </div>
           <h1 id="voice-hero-title">
-            Every enquiry has a story.
-            <br />
-            <em>Give it a next step.</em>
+            <span className="hero-headline-line">
+              <span className="hero-enter hero-enter-mask hero-enter-first">
+                Every enquiry has a story.
+              </span>
+            </span>{" "}
+            <span className="hero-headline-line">
+              <span className="hero-enter hero-enter-mask hero-enter-second">
+                <em className="hero-enter hero-enter-em">
+                  Give it a next step.
+                </em>
+              </span>
+            </span>
           </h1>
-          <p>
+          <p className="hero-enter hero-enter-soft">
             Voice agents that listen, ask the right questions and turn everyday
             conversations into clear property enquiries and clinic appointment
             requests.
           </p>
           <div className="voice-hero-actions">
-            <a className="button" href="#agents">
+            <a className="button hero-enter hero-enter-button" href="#agents">
               Talk to an agent <Arrow />
             </a>
-            <Link className="hero-contact" href="/contact">
+            <Link
+              className="hero-contact hero-enter hero-enter-side"
+              href="/contact"
+            >
               Build yours with us <Arrow diagonal />
             </Link>
           </div>
@@ -50,81 +168,69 @@ export function VoiceScene() {
           <div className="hero-scene-controls">
             <MotionToggle />
           </div>
-          <div className="hero-wave-field" aria-hidden="true">
-            <svg viewBox="0 0 660 320" fill="none">
+          <div
+            className="hero-wave-field"
+            data-static={
+              reduced || mediaFailed || autoplayBlocked || !hasPlayed
+            }
+            aria-hidden="true"
+          >
+            <svg
+              className="hero-media-filter"
+              width="0"
+              height="0"
+              focusable="false"
+            >
               <defs>
-                <radialGradient id="hero-orb-light" cx=".3" cy=".24" r=".82">
-                  <stop offset="0" stopColor="#526065" />
-                  <stop offset=".38" stopColor="#27373c" />
-                  <stop offset=".8" stopColor="#17242a" />
-                  <stop offset="1" stopColor="#101b20" />
-                </radialGradient>
-                <linearGradient
-                  id="hero-orb-edge"
-                  x1="286"
-                  y1="116"
-                  x2="374"
-                  y2="204"
-                  gradientUnits="userSpaceOnUse"
+                <filter
+                  id="saavantus-particle-tint"
+                  x="0"
+                  y="0"
+                  width="100%"
+                  height="100%"
+                  colorInterpolationFilters="sRGB"
                 >
-                  <stop stopColor="#708083" stopOpacity=".45" />
-                  <stop offset="1" stopColor="#17242a" stopOpacity="0" />
-                </linearGradient>
+                  <feColorMatrix type="saturate" values="0" />
+                  <feComponentTransfer>
+                    <feFuncR type="table" tableValues="0.968627 0.854902" />
+                    <feFuncG type="table" tableValues="0.956863 0.352941" />
+                    <feFuncB type="table" tableValues="0.933333 0.278431" />
+                    <feFuncA type="identity" />
+                  </feComponentTransfer>
+                </filter>
               </defs>
-              {Array.from({ length: 28 }, (_, line) => {
-                const d = Array.from({ length: 133 }, (_, point) => {
-                  const x = point * 5;
-                  const envelope = Math.exp(-Math.pow((x - 330) / 165, 2));
-                  const amplitude = (34 + line * 3.5) * envelope;
-                  const y =
-                    160 + Math.sin((x - 55) / 47 + line * 0.055) * amplitude;
-                  return `${point ? "L" : "M"}${x} ${y.toFixed(2)}`;
-                }).join(" ");
-                return (
-                  <path
-                    key={line}
-                    className="wave-ribbon"
-                    d={d}
-                    stroke="currentColor"
-                    strokeWidth=".65"
-                    opacity=".7"
-                    style={
-                      { "--wave-delay": `${line * -0.17}s` } as CSSProperties
-                    }
-                  />
-                );
-              })}
-              {Array.from({ length: 51 }, (_, i) => {
-                const x = 80 + i * 10;
-                const envelope = Math.exp(-Math.pow((x - 330) / 190, 2));
-                const height =
-                  (12 + Math.pow(Math.sin(i * 0.66), 2) * 60) * envelope;
-                return (
-                  <path
-                    key={i}
-                    d={`M${x} ${160 - height / 2}v${height}`}
-                    stroke="currentColor"
-                    strokeWidth=".8"
-                    opacity=".42"
-                  />
-                );
-              })}
-              <g className="hero-orb">
-                <circle cx="330" cy="160" r="45" fill="url(#hero-orb-light)" />
-                <circle
-                  cx="330"
-                  cy="160"
-                  r="44.5"
-                  stroke="url(#hero-orb-edge)"
-                />
-                <path
-                  d="M307 134v53m8-62v71m9-77v82m10-81v80m10-72v63m10-51v39"
-                  stroke="#da5a47"
-                  strokeWidth=".8"
-                  opacity=".25"
-                />
-              </g>
             </svg>
+            <img
+              className="hero-particle-poster"
+              src="/media/saavantus-particle-wave-poster.jpg"
+              alt=""
+              width="1920"
+              height="1080"
+              decoding="async"
+            />
+            <video
+              ref={video}
+              className="hero-particle-video"
+              src="/media/saavantus-particle-wave.mp4"
+              poster="/media/saavantus-particle-wave-poster.jpg"
+              width="1920"
+              height="1080"
+              preload={reduced ? "none" : "metadata"}
+              muted
+              loop
+              playsInline
+              disablePictureInPicture
+              tabIndex={-1}
+              onPlaying={() => {
+                if (!playbackAllowed.current) {
+                  video.current?.pause();
+                  return;
+                }
+                setHasPlayed(true);
+                setAutoplayBlocked(false);
+              }}
+              onError={() => setMediaFailed(true)}
+            />
           </div>
           <div
             className="conversation-map"

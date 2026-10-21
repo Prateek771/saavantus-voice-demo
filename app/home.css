@@ -104,39 +104,38 @@
   position: relative;
   width: calc(100% + 80px);
   margin: -12px -40px -12px;
-  color: var(--accent);
+  aspect-ratio: 16 / 9;
+  background: var(--paper);
 }
-.hero-wave-field svg {
-  display: block;
+.hero-media-filter {
+  position: absolute;
+}
+.hero-particle-video,
+.hero-particle-poster {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  overflow: visible;
+  height: 100%;
+  object-fit: contain;
+  filter: url(#saavantus-particle-tint);
 }
-.wave-ribbon {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: voice-ribbon 7s ease-in-out infinite alternate;
-  animation-delay: var(--wave-delay);
+.hero-particle-video {
+  opacity: 1;
 }
-@keyframes voice-ribbon {
-  from {
-    transform: translateX(-5px) scaleY(0.86);
-  }
-  to {
-    transform: translateX(5px) scaleY(1.12);
-  }
+.hero-wave-field[data-static="true"] .hero-particle-video {
+  opacity: 0;
 }
-.hero-orb {
-  transform-origin: 330px 160px;
-  animation: hero-orb-float 5.5s ease-in-out infinite alternate;
+.hero-headline-line {
+  display: block;
+  overflow: hidden;
+  padding: 0.06em 0.05em 0.14em;
+  margin: -0.06em -0.05em -0.14em;
 }
-@keyframes hero-orb-float {
-  from {
-    transform: translateY(4px) rotate(-3deg);
-  }
-  to {
-    transform: translateY(-7px) rotate(3deg);
-  }
+.hero-enter-mask {
+  display: block;
+}
+.hero-enter-em {
+  display: inline-block;
 }
 .conversation-map {
   position: relative;

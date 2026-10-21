@@ -109,6 +109,11 @@ export function MotionProvider({ children }: { children: ReactNode }) {
   );
 }
 
+export function useMotionState() {
+  const { paused, reduced } = useContext(MotionContext);
+  return { paused, reduced };
+}
+
 export function MotionToggle() {
   const { paused, reduced, toggle } = useContext(MotionContext);
   return (
