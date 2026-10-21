@@ -71,6 +71,7 @@ export function Header() {
             <Link
               href="/contact"
               className="button secondary nav-cta"
+              aria-current={path === "/contact" ? "page" : undefined}
               onClick={() => setOpen(false)}
             >
               Contact us <Icon name="arrow" size={16} />

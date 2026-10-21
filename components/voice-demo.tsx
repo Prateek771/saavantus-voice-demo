@@ -212,11 +212,11 @@ export function VoiceDemo({ industry }: { industry: Industry }) {
   return (
     <section
       id="voice-demo"
-      className="demo-section container"
+      className="demo-section voice-demo-section container"
       aria-labelledby={`${industry}-voice-heading`}
     >
       <div className="demo-intro">
-        <span className="eyebrow">TALK TO THE AGENT</span>
+        <span className="demo-surface-label">Live voice demo</span>
         <span className="local-chip">
           {setup?.ready ? "Sarvam voice · Demo only" : "Awaiting Sarvam setup"}
         </span>
@@ -231,88 +231,111 @@ export function VoiceDemo({ industry }: { industry: Industry }) {
           Speak in English or Hindi. Use fictional details for this
           demonstration. CRM updates and real appointments are not connected.
         </p>
-        <label className="voice-language">
-          Starting language{" "}
-          <select
-            value={language}
-            disabled={active}
-            onChange={(event) =>
-              setLanguage(event.target.value as "English" | "Hindi")
-            }
-          >
-            <option>English</option>
-            <option>Hindi</option>
-          </select>
-        </label>
-        <p className="voice-disclosure">
-          When you start, your microphone audio is sent to Sarvam for AI
-          processing. Sarvam may retain recordings and transcripts under your
-          workspace settings. This page keeps the displayed transcript in memory
-          only.
-        </p>
-        <label className="voice-consent">
-          <input
-            type="checkbox"
-            checked={consent}
-            disabled={active}
-            onChange={(event) => setConsent(event.target.checked)}
-          />{" "}
-          I understand and want to start a voice demo using fictional
-          information.
-        </label>
-        {!setup?.ready && setup?.message && (
-          <p role="status">{setup.message}</p>
-        )}
-        <div className="voice-controls">
-          <button
-            className="button primary"
-            disabled={!setup?.ready || !consent || active}
-            onClick={() => void start()}
-          >
-            Start voice demo
-          </button>
-          <button
-            className="button secondary"
-            disabled={!active}
-            onClick={() => void end()}
-          >
-            End conversation
-          </button>
-          <button
-            className="button secondary"
-            disabled={!active || !agent.current}
-            aria-pressed={muted}
-            onClick={() => {
-              const current = agent.current;
-              if (!current) return;
-              if (current.isMuted()) current.unmute();
-              else current.mute();
-              setMuted(current.isMuted());
-            }}
-          >
-            {muted ? "Unmute" : "Mute"}
-          </button>
+        <div className="voice-workspace">
+          <div className="voice-setup">
+            <label className="voice-language">
+              Starting language{" "}
+              <select
+                value={language}
+                disabled={active}
+                onChange={(event) =>
+                  setLanguage(event.target.value as "English" | "Hindi")
+                }
+              >
+                <option>English</option>
+                <option>Hindi</option>
+              </select>
+            </label>
+            <p className="voice-disclosure">
+              When you start, your microphone audio is sent to Sarvam for AI
+              processing. Sarvam may retain recordings and transcripts under
+              your workspace settings. This page keeps the displayed transcript
+              in memory only.
+            </p>
+            <label className="voice-consent">
+              <input
+                type="checkbox"
+                checked={consent}
+                disabled={active}
+                onChange={(event) => setConsent(event.target.checked)}
+              />{" "}
+              I understand and want to start a voice demo using fictional
+              information.
+            </label>
+            {!setup?.ready && setup?.message && (
+              <p role="status">{setup.message}</p>
+            )}
+            <div className="voice-controls">
+              <button
+                className="button primary"
+                disabled={!setup?.ready || !consent || active}
+                onClick={() => void start()}
+              >
+                Start voice demo
+              </button>
+              <button
+                className="button secondary"
+                disabled={!active}
+                onClick={() => void end()}
+              >
+                End conversation
+              </button>
+              <button
+                className="button secondary"
+                disabled={!active || !agent.current}
+                aria-pressed={muted}
+                onClick={() => {
+                  const current = agent.current;
+                  if (!current) return;
+                  if (current.isMuted()) current.unmute();
+                  else current.mute();
+                  setMuted(current.isMuted());
+                }}
+              >
+                {muted ? "Unmute" : "Mute"}
+              </button>
+            </div>
+          </div>
+          <div className="voice-session">
+            <div className="voice-session-heading">
+              <span>Conversation transcript</span>
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                aria-hidden="true"
+              >
+                <rect x="9" y="3" width="6" height="12" rx="3" />
+                <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8" />
+              </svg>
+            </div>
+            <p className="voice-session-status" role="status">
+              {muted ? "Microphone muted." : status}
+            </p>
+            {error && <p role="alert">{error}</p>}
+            <div
+              className="voice-transcript"
+              ref={transcript}
+              role="log"
+              aria-live="polite"
+              aria-label="Live voice transcript"
+            >
+              {lines.length ? (
+                lines.map((line, index) => (
+                  <p key={index}>
+                    <strong>{line.role}:</strong> {line.content}
+                  </p>
+                ))
+              ) : (
+                <p>Your conversation transcript will appear here.</p>
+              )}
+            </div>
+          </div>
         </div>
-        <p role="status">{muted ? "Microphone muted." : status}</p>
-        {error && <p role="alert">{error}</p>}
-        <div
-          className="voice-transcript"
-          ref={transcript}
-          role="log"
-          aria-live="polite"
-          aria-label="Live voice transcript"
-        >
-          {lines.length ? (
-            lines.map((line, index) => (
-              <p key={index}>
-                <strong>{line.role}:</strong> {line.content}
-              </p>
-            ))
-          ) : (
-            <p>Your conversation transcript will appear here.</p>
-          )}
-        </div>
-        <p className="voice-disclosure">
+        <p className="voice-disclosure voice-session-limit">
           Up to three minutes per demo. No booking, CRM save or human transfer
           occurs. Healthcare demo: appointment administration only.
         </p>

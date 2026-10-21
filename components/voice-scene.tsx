@@ -22,33 +22,6 @@ export function VoiceScene() {
       ref={scene}
       aria-labelledby="voice-hero-title"
     >
-      <div className="hero-wave-field" aria-hidden="true">
-        <svg viewBox="0 0 1440 700" preserveAspectRatio="none" fill="none">
-          {Array.from({ length: 20 }, (_, line) => {
-            const d = Array.from({ length: 121 }, (_, point) => {
-              const x = point * 12;
-              const amplitude = 40 + 95 * Math.pow(Math.sin(x / 540), 2);
-              const y =
-                420 + Math.sin(x / 150 + line * 0.13) * amplitude + line * 4;
-              return `${point ? "L" : "M"}${x} ${y.toFixed(2)}`;
-            }).join(" ");
-            return (
-              <path
-                key={line}
-                className="wave-ribbon"
-                d={d}
-                stroke="currentColor"
-                strokeWidth=".8"
-                style={{ "--wave-delay": `${line * -0.17}s` } as CSSProperties}
-              />
-            );
-          })}
-        </svg>
-      </div>
-      <div className="voice-hero-topline">
-        <p>Built for Indian businesses. Spoken in English & Hindi.</p>
-        <MotionToggle />
-      </div>
       <div className="voice-hero-copy">
         <h1 id="voice-hero-title">
           Every enquiry has a story.
@@ -69,61 +42,93 @@ export function VoiceScene() {
           </Link>
         </div>
       </div>
-      <div
-        className="conversation-map"
-        aria-label="Illustrative property enquiry moving from conversation to confirmed details and a next step"
-      >
-        <div className="conversation-source">
-          <span className="map-label">A conversation begins</span>
-          <p>
-            “A 2 BHK in Whitefield. <br />
-            Sometime this weekend?”
-          </p>
-          <div className="voice-signal" aria-hidden="true">
-            {Array.from({ length: 27 }, (_, i) => (
-              <i
-                className="signal-bar"
-                key={i}
-                style={
-                  {
-                    height: `${8 + Math.pow(Math.sin(i * 0.7), 2) * 27}px`,
-                    "--bar-delay": `${i * -0.14}s`,
-                  } as CSSProperties
-                }
-              />
-            ))}
+      <div className="voice-product-scene">
+        <div className="hero-wave-field" aria-hidden="true">
+          <svg viewBox="0 0 1440 320" preserveAspectRatio="none" fill="none">
+            {Array.from({ length: 32 }, (_, line) => {
+              const d = Array.from({ length: 145 }, (_, point) => {
+                const x = point * 10;
+                const envelope = Math.exp(-Math.pow((x - 720) / 550, 2));
+                const amplitude = 28 + 62 * envelope;
+                const y =
+                  120 + Math.sin(x / 145 + line * 0.1) * amplitude + line * 2.6;
+                return `${point ? "L" : "M"}${x} ${y.toFixed(2)}`;
+              }).join(" ");
+              return (
+                <path
+                  key={line}
+                  className="wave-ribbon"
+                  d={d}
+                  stroke="currentColor"
+                  strokeWidth=".75"
+                  style={
+                    { "--wave-delay": `${line * -0.17}s` } as CSSProperties
+                  }
+                />
+              );
+            })}
+          </svg>
+        </div>
+        <div className="voice-hero-topline">
+          <p>Built for Indian businesses. Spoken in English & Hindi.</p>
+          <MotionToggle />
+        </div>
+        <div
+          className="conversation-map"
+          aria-label="Illustrative property enquiry moving from conversation to confirmed details and a next step"
+        >
+          <div className="conversation-source">
+            <span className="map-label">A conversation begins</span>
+            <p>
+              “A 2 BHK in Whitefield. <br />
+              Sometime this weekend?”
+            </p>
+            <div className="voice-signal" aria-hidden="true">
+              {Array.from({ length: 27 }, (_, i) => (
+                <i
+                  className="signal-bar"
+                  key={i}
+                  style={
+                    {
+                      height: `${8 + Math.pow(Math.sin(i * 0.7), 2) * 27}px`,
+                      "--bar-delay": `${i * -0.14}s`,
+                    } as CSSProperties
+                  }
+                />
+              ))}
+            </div>
           </div>
-        </div>
-        <span className="map-connector" aria-hidden="true">
-          <Arrow />
-        </span>
-        <div className="conversation-details">
-          <span className="map-label">The important details, confirmed</span>
-          <dl>
-            <div>
-              <dt>Intent</dt>
-              <dd>Buy a home</dd>
-            </div>
-            <div>
-              <dt>Location</dt>
-              <dd>Whitefield</dd>
-            </div>
-            <div>
-              <dt>Preference</dt>
-              <dd>2 BHK · Weekend</dd>
-            </div>
-          </dl>
-        </div>
-        <span className="map-connector" aria-hidden="true">
-          <Arrow />
-        </span>
-        <div className="conversation-outcome">
-          <span className="map-label">A clear next step</span>
-          <p>
-            A viewing request. <br />
-            <em>Ready for a person.</em>
-          </p>
-          <span className="map-status">Requested · Not booked</span>
+          <span className="map-connector" aria-hidden="true">
+            <Arrow />
+          </span>
+          <div className="conversation-details">
+            <span className="map-label">The important details, confirmed</span>
+            <dl>
+              <div>
+                <dt>Intent</dt>
+                <dd>Buy a home</dd>
+              </div>
+              <div>
+                <dt>Location</dt>
+                <dd>Whitefield</dd>
+              </div>
+              <div>
+                <dt>Preference</dt>
+                <dd>2 BHK · Weekend</dd>
+              </div>
+            </dl>
+          </div>
+          <span className="map-connector" aria-hidden="true">
+            <Arrow />
+          </span>
+          <div className="conversation-outcome">
+            <span className="map-label">A clear next step</span>
+            <p>
+              A viewing request. <br />
+              <em>Ready for a person.</em>
+            </p>
+            <span className="map-status">Requested · Not booked</span>
+          </div>
         </div>
       </div>
       <p className="hero-visual-note">

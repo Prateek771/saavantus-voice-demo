@@ -89,7 +89,7 @@ export function Demo({ industry }: { industry: Industry }) {
       }
     >
       <div className="demo-intro">
-        <span className="eyebrow">THE INTERACTIVE WALKTHROUGH</span>
+        <span className="demo-surface-label">Interactive walkthrough</span>
         <span className="local-chip">
           <span className="status-dot" />
           Local simulation · No microphone
@@ -414,7 +414,7 @@ export function Demo({ industry }: { industry: Industry }) {
         </div>
         <aside className="result-panel" aria-label="Sample result">
           <div className="result-top">
-            <span className="eyebrow">
+            <span className="result-mode-label">
               {state.phase === "idle"
                 ? "SAMPLE RESULT"
                 : "YOUR LOCAL DEMO RESULT"}

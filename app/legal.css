@@ -1,0 +1,36 @@
+.legal-page {
+  max-width: 848px;
+  padding-block: clamp(56px, 7vw, 88px) clamp(72px, 8vw, 112px);
+}
+.legal-page h1 {
+  max-width: 21ch;
+  margin-bottom: 28px;
+  font-size: clamp(2.7rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+.legal-page > p:first-of-type {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 32px;
+  margin-bottom: 36px;
+  color: var(--body);
+  font-size: 1.075rem;
+}
+.legal-page p {
+  max-width: 70ch;
+  color: var(--body);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.legal-page h2 {
+  margin-top: 36px;
+  margin-bottom: 14px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+.legal-page .button {
+  margin-top: 24px;
+}

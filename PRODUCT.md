@@ -18,7 +18,7 @@ web
 - Initial market: India. Initial voice languages: English and Hindi.
 - Visitors should be able to speak to the agents directly in the browser.
 - Copy should be concise, specific, and sufficiently detailed to explain the product.
-- Current authorization: redesign the local website with a full-width animated voice hero, Lenis scrolling, stronger workflow copy, verified contact footer and local contact intake. Preserve both managed Sarvam agents and their browser voice connection. Prepare the GoHighLevel field/appointment handoff for the next integration stage. n8n and GoHighLevel remain disconnected; no public deployment is authorised.
+- Current authorization: redesign the local website with a unified premium light design across the homepage, real estate, healthcare and contact. Adapt the supplied Aqua Voice reference's near-white restraint using self-hosted DM Sans, accessible blue actions, an animated blue wave, full-width hero and clear product demonstrations. Preserve Lenis scrolling, the existing workflow and SaaS 4A copy, verified contact footer, local contact intake, both managed Sarvam agents and their browser voice connection. Prepare the GoHighLevel field/appointment handoff for the next integration stage. n8n and GoHighLevel remain disconnected; no public deployment is authorised.
 
 ## Users and intended outcome
 
@@ -35,7 +35,7 @@ Prospective business customers evaluate the agents by role-playing a property en
 
 ## Current implementation
 
-The homepage redesign replaces the split hero with an animated conversation canvas and explains the existing SaaS 4A Framework (Assess, Architect, Adjust, Automate), verified against saavantus.com. Pinned Lenis smooths wheel scrolling; native touch, reduced-motion preferences, a visible motion pause, visible-by-default text and offscreen animation cleanup preserve usability. Contact intake saves locally with clear status, not to GoHighLevel. Footer contact details are verified against the existing site; no testimonials or client results have been invented.
+The premium light redesign uses a near-white canvas, light DM Sans headlines, blue actions and restrained cool surfaces across the four main pages. Its full-width homepage hero places the copy above an animated blue waveform and a white conversation schematic. It explains the existing SaaS 4A Framework (Assess, Architect, Adjust, Automate), verified against saavantus.com. Pinned Lenis smooths wheel scrolling; native touch, reduced-motion preferences, a visible motion pause, visible-by-default text and offscreen animation cleanup preserve usability. Contact intake saves locally with clear status, not to GoHighLevel. Footer contact details are verified against the existing site; no testimonials or client results have been invented. DESIGN.md records the current visual authority.
 
 A Next.js/TypeScript local preview now implements the three approved pages and deterministic walkthroughs, with sample preferences and appointment/CRM outcomes. Contact/privacy/terms are truthful preview routes. Both Sarvam agents are committed at version 1 and connected through the official browser SDK and a server-only signing proxy. Synthetic streaming checks passed; physical microphone and conversation quality remain unverified. No live scheduling or CRM persistence is implemented. See docs/LOCAL_PREVIEW.md and docs/VERIFICATION.md.
 

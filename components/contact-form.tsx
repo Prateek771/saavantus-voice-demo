@@ -135,6 +135,7 @@ export function ContactForm() {
       noValidate
       aria-busy={busy}
     >
+      <h2 className="contact-form-title">Your enquiry</h2>
       <div className="contact-preview-note">
         <strong>Local preview</strong>
         <p>

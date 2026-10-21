@@ -1,12 +1,10 @@
 import Link from "next/link";
+import "@/app/legal.css";
 export const metadata = { title: "Preview scope" };
 export default function Terms() {
   return (
-    <article className="container page-prose">
-      <p className="eyebrow">PREVIEW SCOPE</p>
-      <h1>
-        A demonstration, <em>clearly labelled.</em>
-      </h1>
+    <article className="container legal-page">
+      <h1>A demonstration, clearly labelled.</h1>
       <p>
         This local application lets you review Saavantus's proposed website and
         workflow with fictional examples. Live voice is available only when the

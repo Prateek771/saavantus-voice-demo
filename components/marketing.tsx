@@ -75,56 +75,6 @@ export function MarketingIcon({
   );
 }
 
-export function VoiceArtwork() {
-  return (
-    <div className="voice-artwork" aria-hidden="true">
-      <svg viewBox="0 0 620 330" fill="none">
-        <defs>
-          <radialGradient id="voice-sphere">
-            <stop offset="0" stopColor="#475055" />
-            <stop offset="1" stopColor="#17242a" />
-          </radialGradient>
-        </defs>
-        {Array.from({ length: 27 }, (_, row) => {
-          const points = Array.from({ length: 155 }, (_, point) => {
-            const x = point * 4;
-            const envelope = Math.exp(-Math.pow((x - 310) / 170, 2));
-            const y =
-              166 +
-              Math.sin(x / 39 + row * 0.055) * (20 + row * 4.7) * envelope;
-            return `${point ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`;
-          }).join(" ");
-          return (
-            <path
-              key={row}
-              d={points}
-              stroke="#da4c38"
-              strokeWidth=".7"
-              opacity=".65"
-            />
-          );
-        })}
-        <circle cx="310" cy="167" r="43" fill="url(#voice-sphere)" />
-        {Array.from({ length: 45 }, (_, i) => {
-          const x = 58 + i * 11.5;
-          const height =
-            8 +
-            Math.pow(Math.sin(i * 0.68), 2) * 65 * (1 - Math.abs(i - 22) / 29);
-          return (
-            <path
-              key={i}
-              d={`M${x} ${166 - height / 2}v${height}`}
-              stroke="#da4c38"
-              strokeWidth="1"
-              opacity=".8"
-            />
-          );
-        })}
-      </svg>
-    </div>
-  );
-}
-
 export function IndustryHero({
   industry,
   eyebrow,
@@ -149,36 +99,101 @@ export function IndustryHero({
           <span aria-hidden="true">/</span>
           <span>{healthcare ? "Healthcare" : "Real estate"}</span>
         </nav>
-        <div className="industry-hero-grid">
-          <div className="industry-hero-copy">
-            <p className="eyebrow">{eyebrow}</p>
-            <h1>
-              {firstLine}
-              <br />
-              {secondLine}
-            </h1>
-            {children}
-            <p className="industry-language">
-              English and Hindi · Voice setup shown below
-            </p>
-            <a className="text-link" href="#voice-demo">
-              Explore the demo <Arrow />
+        <div className="industry-hero-copy">
+          <h1>
+            {firstLine}
+            <br />
+            {secondLine}
+          </h1>
+          {children}
+          <div className="industry-hero-actions">
+            <a className="button" href="#voice-demo">
+              Talk to the agent <Arrow />
+            </a>
+            <a className="text-link" href="#demo">
+              Explore the walkthrough <Arrow />
             </a>
           </div>
-          <div className="industry-image">
-            <img
-              src={healthcare ? "/images/clinic.png" : "/images/property.png"}
-              width="780"
-              height="650"
-              alt={
-                healthcare
-                  ? "Illustrative architectural image of a warm, light-filled clinic reception. Not a real clinic."
-                  : "Illustrative architectural image of a modern apartment building. Not a property listing."
-              }
-            />
-            <span className="image-caption">Illustrative architecture</span>
-          </div>
+          <p className="industry-language">
+            English and Hindi · Fictional information only
+          </p>
         </div>
+        <figure
+          className="industry-preview"
+          aria-label={`${healthcare ? "Clinic reception" : "Property enquiry"} sample workflow`}
+        >
+          <figcaption className="industry-preview-bar">
+            <span>{eyebrow}</span>
+            <span className="industry-preview-mode">
+              Illustrative conversation
+            </span>
+          </figcaption>
+          <div className="industry-preview-flow">
+            <div className="industry-preview-conversation">
+              <span className="preview-role">
+                <MarketingIcon kind="conversation" /> The enquiry
+              </span>
+              <p className="preview-quote">
+                {healthcare
+                  ? "“I'd like a general consultation on Friday afternoon.”"
+                  : "“I'm looking for a two-bedroom home in Whitefield, under ₹1 crore.”"}
+              </p>
+              <div className="preview-wave" aria-hidden="true">
+                <svg viewBox="0 0 380 44" fill="none">
+                  {[0, 1, 2, 3, 4].map((line) => (
+                    <path
+                      key={line}
+                      d={`M0 22 C45 22 55 ${10 + line * 4} 95 22 S145 ${42 - line * 5} 190 22 S240 ${line * 5} 285 22 S340 ${33 - line * 2} 380 22`}
+                      stroke="currentColor"
+                      strokeWidth="1"
+                      opacity={0.3 + line * 0.13}
+                    />
+                  ))}
+                </svg>
+              </div>
+            </div>
+            <div className="industry-preview-record">
+              <span className="preview-role">
+                <MarketingIcon kind="record" /> Details to confirm
+              </span>
+              <dl>
+                <div>
+                  <dt>{healthcare ? "Service" : "Location"}</dt>
+                  <dd>
+                    {healthcare
+                      ? "General consultation"
+                      : "Whitefield, Bengaluru"}
+                  </dd>
+                </div>
+                <div>
+                  <dt>{healthcare ? "Preference" : "Property"}</dt>
+                  <dd>{healthcare ? "Friday afternoon" : "2-bedroom home"}</dd>
+                </div>
+                <div>
+                  <dt>{healthcare ? "Request" : "Budget"}</dt>
+                  <dd>
+                    {healthcare ? "Reception follow-up" : "Under ₹1 crore"}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+            <div className="industry-preview-next">
+              <span className="preview-role">
+                <MarketingIcon kind="calendar" /> The next step
+              </span>
+              <p>
+                {healthcare
+                  ? "An appointment request for the reception team."
+                  : "A viewing request for the property team."}
+              </p>
+              <span className="preview-pending">Requested · Not booked</span>
+            </div>
+          </div>
+          <p className="industry-preview-note">
+            Sample details shown. CRM and calendar connections are not active in
+            this demo.
+          </p>
+        </figure>
       </div>
     </section>
   );
@@ -224,7 +239,6 @@ export function IntegrationBand({
     <section className={`integration-band ${home ? "integration-home" : ""}`}>
       <div className="container integration-layout">
         <div>
-          <p className="integration-label">INTEGRATION PREVIEW</p>
           <h2>
             {home
               ? "Your voice agent. Your CRM. Your calendar."
@@ -232,6 +246,9 @@ export function IntegrationBand({
                 ? "An organised request. A clear appointment status."
                 : "A record your sales team can use."}
           </h2>
+          <span className="integration-label">
+            Integration preview · Not connected
+          </span>
           {!home && !healthcare && (
             <div className="record-flow">
               {[

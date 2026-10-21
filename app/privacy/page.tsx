@@ -1,12 +1,10 @@
 import Link from "next/link";
+import "@/app/legal.css";
 export const metadata = { title: "Local preview data handling" };
 export default function Privacy() {
   return (
-    <article className="container page-prose">
-      <p className="eyebrow">LOCAL PREVIEW</p>
-      <h1>
-        Your data in this <em>preview.</em>
-      </h1>
+    <article className="container legal-page">
+      <h1>Your data in this preview.</h1>
       <p>
         This notice describes the local Saavantus demo and its contact form.
         Please use fictional information while testing.
