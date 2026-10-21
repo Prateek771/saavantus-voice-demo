@@ -1,12 +1,12 @@
 # Saavantus design system
 
-Authority: the latest October 21, 2026 update adds the user-supplied particle-wave footage and staged hero entrances. Preserve the warm ivory/coral palette, split composition, current Saavantus wording and all other page layouts and behavior. The Vesper reference supplies animation only, not branding, claims, fonts or a replacement site structure. Product facts and existing live Sarvam behavior stay authoritative in PRODUCT.md.
+Authority: the latest October 21, 2026 correction replaces the mistaken Vesper video reference with the supplied Sculpture Hero code. Use its interactive liquid-particle sculpture and artwork-above, copy-below hero composition. Preserve the warm ivory/coral palette, current Saavantus wording and all other page layouts and behavior. Product facts and existing live Sarvam behavior stay authoritative in PRODUCT.md.
 
 ## Visual direction
 
 Use warm ivory surfaces, deep neutral text and coral actions consistently across the homepage, industry pages, contact, legal routes, navigation, footer and demos. Keep the existing self-hosted DM Sans typography, precise controls, fine borders and readable structured enquiry examples. The supplied screenshot governs the restored homepage hero. Earlier Aqua Voice exploration remains historical inspiration for restraint, not the current palette or hero composition.
 
-The homepage hero keeps the split composition, with current headline, supporting copy and actions on the left and the supplied flowing particle-wave video on the right. The unmodified motion is tinted from grayscale into ivory and coral; it replaces the previous mathematical orb. Preserve all existing product wording and honest illustration labels. This decorative footage does not indicate live microphone activity. Keep the rest of the site's layout, spacing, typography, colors and interactions unchanged.
+The homepage hero gives the supplied liquid sculpture a wide artwork band above the copy. Below it, the current headline sits left and supporting copy and actions sit right, stacking naturally on phones. Preserve the supplied pixel-sampled WebGL simulation: cursor and touch disturb the material, which settles back into the original sculpture. Adapt its color to ivory/coral. Retain the existing conversation example and honest labels in a compact strip below. This decorative interaction does not indicate live microphone activity. Keep the rest of the site's layout, spacing, typography, colors and interactions unchanged.
 
 ## Shared tokens
 
@@ -41,12 +41,12 @@ The main page grid is 1200px of content inside a 1256px container, with 28px des
 - Forms, native selects and transcripts use light surfaces, readable text, honest labels and visible boundaries. Inputs retain native interaction. Selection, caret, focus and scrollbars use the same palette.
 - Product demos and result panels are warm white or soft warm neutral. Real estate and healthcare share the same visual language and readable information structure. Do not use dark result panels, dark hero blocks or a dark footer.
 - Use fine borders as the default separation. Apply a subtle offset, blurred shadow only where real elevation is needed. Avoid glows, heavy gradients, decorative glass, pills for primary buttons and excessive nested cards.
-- Use the existing outlined SVG icon vocabulary. The hero uses the exact user-supplied MP4 and a static frame from it, served locally; other waveform diagrams retain their authored SVG geometry.
+- Use the existing outlined SVG icon vocabulary. The hero uses the supplied WebGL2 liquid-particle engine with its original desktop and mobile sculpture images served locally; a tinted static image remains available without WebGL. Other waveform diagrams retain their authored SVG geometry.
 - Keep sample data, pending requests, real voice connectivity and unconnected CRM/calendar operations clearly distinguished. Never add fabricated customer logos, testimonials, statistics or outcomes.
 
 ## Page composition
 
-**Homepage:** the split copy-left, particle-wave-right hero leads into open editorial explanation, two focused industry demonstrations, a three-step conversation workflow and the existing SaaS 4A Framework: Assess, Architect, Adjust, Automate. The 4A sequence is preserved in full. A soft warm-neutral contact invitation closes the page before the light footer.
+**Homepage:** the sculpture-above, copy-below hero leads into open editorial explanation, two focused industry demonstrations, a three-step conversation workflow and the existing SaaS 4A Framework: Assess, Architect, Adjust, Automate. The 4A sequence is preserved in full. A soft warm-neutral contact invitation closes the page before the light footer.
 
 **Real estate:** introduce the concrete property enquiry role, then let the visitor try the live voice agent or scripted walkthrough. Sample preferences and the resulting enquiry remain legible on light panels. Follow with the role's workflow, boundaries and a relevant contact action.
 
@@ -56,7 +56,7 @@ The main page grid is 1200px of content inside a 1256px container, with 28px des
 
 ## Motion and access
 
-The reference particle video is the hero's focal motion. Headline lines reveal through masks, supporting text rises softly, and the two actions enter on the reference's staggered timings. These effects apply only to the hero. Resting content remains visible; completion clears presentation transforms. Video is muted and loops at its native speed. Pause motion, reduced-motion preference, background-tab suspension and offscreen state must also stop video playback. A still frame preserves the composition when playback is unavailable or motion is reduced. Preserve Lenis, native touch, anchors, form interaction, transcript scrolling and cleanup.
+The supplied liquid sculpture is the hero's focal interaction. It rests as a crisp image, responds to cursor/touch with liquid particles and settles when released. The mistaken video and its staged entrances are superseded. Copy remains visible without animation. Pause motion, reduced-motion preference, background-tab suspension and offscreen state gate animation and pointer simulation. A static version of the same image preserves the composition when WebGL is unavailable or motion is reduced. Preserve Lenis, native touch scrolling, anchors, form interaction, transcript scrolling and cleanup.
 
 Desktop and phone must be reviewed as complete shells, including header, menu, footer, demo controls and form states. Check real copy wrapping, keyboard focus, horizontal overflow and contrast; a successful build alone is not visual approval.
 

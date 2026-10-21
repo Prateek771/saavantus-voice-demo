@@ -2,22 +2,59 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  padding: 82px 28px 64px;
+  padding: 24px 28px 48px;
   background: var(--paper);
   color: var(--ink);
 }
 .voice-hero-inner {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  align-items: center;
-  gap: 46px;
   max-width: 1200px;
   margin: 0 auto;
 }
-.voice-hero-copy {
+.voice-hero-artwork {
   position: relative;
-  z-index: 1;
-  padding-bottom: 32px;
+  height: 360px;
+  margin-bottom: 40px;
+}
+.liquid-sculpture {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+.liquid-sculpture-fallback {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.liquid-sculpture-fallback img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  user-select: none;
+}
+.liquid-sculpture-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.liquid-sculpture[data-renderer="webgl"] .liquid-sculpture-canvas {
+  opacity: 1;
+}
+.liquid-sculpture[data-renderer="webgl"] .liquid-sculpture-fallback {
+  opacity: 0;
+}
+.voice-hero-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  align-items: end;
+  gap: 56px;
+}
+.voice-hero-copy {
+  min-width: 0;
 }
 .voice-hero-topline {
   margin-bottom: 25px;
@@ -33,7 +70,7 @@
   font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.035em;
-  margin: 0 0 25px;
+  margin: 0;
   text-wrap: balance;
 }
 .voice-hero-copy h1 em {
@@ -41,7 +78,10 @@
   font-weight: 400;
   font-style: italic;
 }
-.voice-hero-copy > p {
+.hero-headline-line {
+  display: block;
+}
+.voice-hero-aside > p {
   max-width: 480px;
   margin: 0;
   font-size: 18px;
@@ -69,12 +109,12 @@
   color: var(--red);
 }
 .voice-product-scene {
-  position: relative;
   min-width: 0;
+  margin-top: 40px;
 }
 .hero-scene-controls {
   position: absolute;
-  top: -25px;
+  top: 0;
   right: 0;
   z-index: 2;
 }
@@ -85,7 +125,7 @@
   min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: transparent;
+  background: var(--paper);
   color: var(--muted);
   padding: 8px 11px;
   font-size: 12px;
@@ -99,54 +139,13 @@
   opacity: 1;
   color: var(--muted);
 }
-.hero-wave-field {
-  pointer-events: none;
-  position: relative;
-  width: calc(100% + 80px);
-  margin: -12px -40px -12px;
-  aspect-ratio: 16 / 9;
-  background: var(--paper);
-}
-.hero-media-filter {
-  position: absolute;
-}
-.hero-particle-video,
-.hero-particle-poster {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: url(#saavantus-particle-tint);
-}
-.hero-particle-video {
-  opacity: 1;
-}
-.hero-wave-field[data-static="true"] .hero-particle-video {
-  opacity: 0;
-}
-.hero-headline-line {
-  display: block;
-  overflow: hidden;
-  padding: 0.06em 0.05em 0.14em;
-  margin: -0.06em -0.05em -0.14em;
-}
-.hero-enter-mask {
-  display: block;
-}
-.hero-enter-em {
-  display: inline-block;
-}
 .conversation-map {
-  position: relative;
   display: grid;
-  grid-template-columns: 1.2fr 20px 1fr;
-  gap: 22px 17px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) 20px minmax(0, 1fr);
+  gap: 28px;
   align-items: start;
-  padding: 0 12px;
-}
-.conversation-source {
-  grid-column: 1 / -1;
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
 }
 .map-label {
   display: block;
@@ -154,26 +153,17 @@
   color: var(--muted);
   margin-bottom: 10px;
 }
-.conversation-source > .map-label {
-  margin-left: 16px;
-}
 .conversation-quote {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  padding: 17px 19px;
-  background: var(--soft);
-  border-radius: 12px;
 }
 .conversation-source p {
   font-size: 16px;
   line-height: 1.45;
   font-weight: 400;
   margin: 0;
-}
-.conversation-source p br {
-  display: none;
 }
 .voice-signal {
   display: flex;
@@ -605,16 +595,16 @@
 }
 
 @media (max-width: 1050px) {
-  .voice-hero {
-    padding-top: 68px;
+  .voice-hero-artwork {
+    height: 320px;
   }
-  .voice-hero-inner {
+  .voice-hero-content {
     gap: 32px;
   }
   .voice-hero-copy h1 {
     font-size: clamp(2.55rem, 4.2vw, 3.2rem);
   }
-  .voice-hero-copy > p {
+  .voice-hero-aside > p {
     font-size: 16px;
   }
   .voice-hero-actions {
@@ -624,36 +614,24 @@
     font-size: 14px;
   }
   .conversation-map {
-    gap: 20px 12px;
-    padding-inline: 0;
+    gap: 20px;
   }
-  .conversation-source p {
-    font-size: 15px;
-  }
-  .conversation-quote {
-    padding: 15px;
-  }
-  .conversation-details dl {
-    font-size: 11px;
-  }
+  .conversation-source p,
   .conversation-outcome p {
     font-size: 15px;
-  }
-  .map-label,
-  .map-status {
-    font-size: 10px;
   }
 }
 @media (max-width: 760px) {
   .voice-hero {
-    padding: 48px 22px 36px;
+    padding: 16px 22px 36px;
   }
-  .voice-hero-inner {
+  .voice-hero-artwork {
+    height: 300px;
+    margin-bottom: 28px;
+  }
+  .voice-hero-content {
     grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .voice-hero-copy {
-    padding-bottom: 0;
+    gap: 24px;
   }
   .voice-hero-topline {
     margin-bottom: 20px;
@@ -667,9 +645,8 @@
     font-size: clamp(2.65rem, 8.3vw, 3.55rem);
     line-height: 1.12;
   }
-  .voice-hero-copy > p {
+  .voice-hero-aside > p {
     max-width: 530px;
-    font-size: 16px;
   }
   .voice-hero-actions {
     gap: 18px;
@@ -679,31 +656,21 @@
     width: auto;
   }
   .voice-product-scene {
-    padding-top: 35px;
-    max-width: 560px;
-    width: 100%;
-    margin: auto;
-  }
-  .hero-scene-controls {
-    top: 8px;
+    margin-top: 32px;
   }
   .motion-toggle {
     font-size: 11px;
     padding-inline: 9px;
   }
-  .hero-wave-field {
-    width: calc(100% + 44px);
-    margin: -8px -22px -2px;
-  }
   .conversation-map {
-    grid-template-columns: 1.2fr 16px 1fr;
+    grid-template-columns: minmax(0, 1.2fr) 16px minmax(0, 1fr);
     gap: 20px 12px;
   }
-  .conversation-source p {
-    font-size: 15px;
+  .conversation-source {
+    grid-column: 1 / -1;
   }
-  .conversation-outcome p {
-    font-size: 15px;
+  .conversation-source p br {
+    display: none;
   }
   .map-connector {
     padding-top: 35px;
@@ -739,7 +706,7 @@
     gap: 6px;
   }
   .conversation-map {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 20px;
   }
   .map-connector {
