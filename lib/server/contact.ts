@@ -1,5 +1,6 @@
 import { mkdir, open, readFile, unlink } from "node:fs/promises";
 import { join } from "node:path";
+import { sameOriginRequest } from "./request-origin.mjs";
 
 type Contact = {
   requestId: string;
@@ -194,17 +195,15 @@ export async function handleContactRequest(
     admit?: (now: number) => boolean;
   } = {},
 ) {
-  const host = request.headers.get("host");
   if (request.method !== "POST")
     return response({ error: "Method not allowed." }, 405);
   if (
-    !["127.0.0.1:3100", "localhost:3100"].includes(host ?? "") ||
-    request.headers.get("origin") !== `http://${host}` ||
+    !sameOriginRequest(request.headers) ||
     request.headers.get("sec-fetch-site") !== "same-origin" ||
     request.headers.get("x-saavantus-contact") !== "1"
   )
     return response(
-      { error: "Open the contact form on this local website to submit." },
+      { error: "Open the contact form on the configured website to submit." },
       403,
     );
   if (

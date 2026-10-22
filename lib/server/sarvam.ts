@@ -1,4 +1,5 @@
 // Server use only. Never import this module from a client component.
+import { sameOriginRequest } from "./request-origin.mjs";
 export type VoiceConfig = {
   key: string;
   orgId: string;
@@ -69,15 +70,13 @@ export function publicVoiceConfig(config: VoiceConfig) {
   };
 }
 export function localRequestAllowed(headers: Headers) {
-  const host = headers.get("host");
-  if (!["127.0.0.1:3100", "localhost:3100"].includes(host ?? "")) return false;
+  if (!sameOriginRequest(headers, false)) return false;
   if (
     headers.get("sec-fetch-site") !== "same-origin" ||
     headers.get("x-saavantus-demo") !== "1"
   )
     return false;
-  const origin = headers.get("origin");
-  return !origin || origin === `http://${host}`;
+  return true;
 }
 export function createLimiter(max: number, windowMs: number) {
   let starts: number[] = [];
