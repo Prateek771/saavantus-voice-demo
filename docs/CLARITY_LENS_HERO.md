@@ -41,3 +41,6 @@ Final rounded-shoulder scene measured 30.0 fps in the visible browser at 1400x95
 
 ## Surface refinement before repository consolidation
 The final scene uses 56 smoother strands, per-lens elongated ring/contact shadows and seven warm caustic ridges per lens spreading toward the lower-right surface. The actual desktop screenshot confirms the shadows and streaks are visible. Production build and all 72 tests passed after integration; independent focused review found no actionable shader, resource or lifecycle issues. Evidence: final-surface-desktop.png.
+
+## Final owner correction
+The owner requested restoring the preceding root/strand animation. The final scene restores all 72 strands and their previous bend amplitudes, frequencies and timing. The new elongated ring shadows and warm caustics remain. Six motion tests and the production build including TypeScript passed after this correction. This supersedes the 56-strand simplification described above.

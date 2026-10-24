@@ -228,7 +228,7 @@ export function createLensRenderer(canvas: HTMLCanvasElement) {
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = -0.025;
     scene.add(floor);
-    const STRANDS = 56,
+    const STRANDS = 72,
       SEGMENTS = 128;
     const vertices = new Float32Array(STRANDS * SEGMENTS * 2 * 3),
       colors = new Float32Array(vertices.length);
