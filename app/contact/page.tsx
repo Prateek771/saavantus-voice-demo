@@ -5,9 +5,10 @@ import "@/app/contact.css";
 export const metadata = {
   title: "Let’s build your next conversation",
   description:
-    "Tell Saavantus about your business, enquiry workflow and preferred callback time. Explore voice agents for real estate and healthcare.",
+    "Tell Saavantus Excellence about your business, enquiry workflow and preferred callback time. Explore voice agents for real estate and healthcare.",
 };
 export default function Contact() {
+  const mapQuery = encodeURIComponent(siteContact.address);
   return (
     <section className="container contact-page">
       <header className="contact-intro">
@@ -35,6 +36,28 @@ export default function Contact() {
               </a>
             ))}
           </div>
+          <section
+            className="contact-location"
+            aria-labelledby="contact-location-title"
+          >
+            <h2 id="contact-location-title">Find us in Bangalore.</h2>
+            <address>{siteContact.address}</address>
+            <iframe
+              title="Saavantus Excellence office location in Bangalore"
+              src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <a
+              className="text-link"
+              href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open in Google Maps
+            </a>
+          </section>
           <Link className="text-link" href="/">
             Explore the voice demos
           </Link>

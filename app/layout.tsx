@@ -9,11 +9,11 @@ import { Header, Footer } from "@/components/shell";
 import { MotionProvider } from "@/components/motion-provider";
 export const metadata: Metadata = {
   title: {
-    default: "Saavantus | Voice agents. Clear next steps.",
-    template: "%s | Saavantus",
+    default: "Saavantus Excellence | AI agents and workflow automation",
+    template: "%s | Saavantus Excellence",
   },
   description:
-    "Explore Saavantus voice agents for real estate and healthcare, in English and Hindi. Live voice demos, clear workflows and a practical path to connected business operations.",
+    "AI agents, workflow automation and cloud services from Saavantus Excellence. Assess your AI readiness with AI Discovery and try our real estate and healthcare voice demos.",
   robots: { index: false, follow: false },
 };
 export default function Layout({ children }: { children: React.ReactNode }) {

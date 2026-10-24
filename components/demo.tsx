@@ -201,7 +201,7 @@ export function Demo({ industry }: { industry: Industry }) {
                 {conversations.slice(0, state.step + 1).map((line, i) => (
                   <div className="exchange" key={i}>
                     <div className="bubble agent">
-                      <span>Saavantus · Scripted</span>
+                      <span>Saavantus Excellence · Scripted</span>
                       <p>{line.agent}</p>
                     </div>
                     <div className="bubble visitor">

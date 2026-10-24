@@ -61,16 +61,24 @@ export function ContactForm() {
       if (!response.ok) {
         setErrors(data.fields ?? {});
         setError(
-          data.error ?? "We could not save this request. Please try again.",
+          data.localSaved
+            ? `A local recovery copy was saved${data.receiptId ? ` (reference ${data.receiptId})` : ""}, but Google Sheets delivery is not confirmed. Your details are still here. Retry this enquiry to check delivery using the same reference.`
+            : (data.error ??
+                "We could not confirm Google Sheets delivery. Your details are still here. Please try again."),
         );
-      } else if (data.saved && data.receiptId) setReceipt(data.receiptId);
+      } else if (
+        data.saved === true &&
+        data.deliveryStatus === "google-sheets" &&
+        data.receiptId
+      )
+        setReceipt(data.receiptId);
       else
         setError(
           "We could not confirm that your request was saved. Please try again.",
         );
     } catch {
       setError(
-        "The local server did not respond. Your details are still here. Check that the preview is running, then try again.",
+        "The server did not confirm delivery. Your details are still here, but the save status may be uncertain. Retry this enquiry to check delivery using the same reference.",
       );
     } finally {
       clearTimeout(timeout);
@@ -103,10 +111,11 @@ export function ContactForm() {
           />
           <path d="m12 22 7 7 13-14" stroke="currentColor" strokeWidth="1.5" />
         </svg>
-        <h2>Saved to the local preview.</h2>
+        <h2>Your enquiry is saved to Google Sheets.</h2>
         <p>
-          Your enquiry is stored privately on this computer for the owner to
-          review. It has not been emailed or sent to GoHighLevel.
+          Your enquiry is saved in Saavantus Excellence's business spreadsheet
+          for the team to review. A local recovery copy is also retained. It has
+          not been emailed or sent to GoHighLevel.
         </p>
         <p>
           If you chose a callback time, it is a preference only. No appointment
@@ -137,10 +146,13 @@ export function ContactForm() {
     >
       <h2 className="contact-form-title">Your enquiry</h2>
       <div className="contact-preview-note">
-        <strong>Local preview</strong>
+        <strong>Enquiry delivery</strong>
         <p>
-          Submissions are saved on this computer only. No email or CRM delivery
-          is connected yet. Use fictional details while testing.
+          Submitting saves a local recovery copy and attempts delivery to
+          Saavantus Excellence's Google Sheets business spreadsheet. Success is
+          shown only after Google confirms delivery. If delivery is unavailable,
+          keep your details here and retry. No email or CRM delivery is
+          included. Use fictional details while testing.
         </p>
       </div>
       {error && (
@@ -301,15 +313,16 @@ export function ContactForm() {
             {...field("consent")}
           />
           <span>
-            I agree that Saavantus may contact me about this enquiry using the
-            details above.{" "}
+            I agree that Saavantus Excellence may store this enquiry in its
+            Google Sheets business spreadsheet and a local recovery copy, and
+            contact me about it using the details above.{" "}
             <Link href="/privacy">Read how this preview handles data.</Link>
           </span>
         </label>
         {note("consent")}
         <div className="contact-submit">
           <button className="button" type="submit" disabled={busy}>
-            {busy ? "Saving your enquiry…" : "Save enquiry to preview"}
+            {busy ? "Saving your enquiry…" : "Submit enquiry"}
             <Arrow />
           </button>
           <span>All fields are required unless marked optional.</span>

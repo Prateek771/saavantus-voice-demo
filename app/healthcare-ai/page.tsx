@@ -11,6 +11,7 @@ import {
   MarketingIcon,
 } from "@/components/marketing";
 import "../marketing.css";
+import "../industry-content.css";
 
 export const metadata: Metadata = {
   title: "Healthcare Receptionist Voice Demo",
@@ -46,12 +47,12 @@ export default function HealthcarePage() {
           {
             icon: "conversation",
             title: "Answer clinic questions",
-            body: "Share approved hours, services, location and visit information.",
+            body: "Share approved hours, services, branch location and visit information. Keep unanswered questions for reception.",
           },
           {
             icon: "calendar",
             title: "Collect appointment preferences",
-            body: "Understand the requested service, clinician and time. Check the details before passing them on.",
+            body: "Collect only the administrative details needed: requested service, branch, clinician preference if relevant, and preferred time. Read them back before passing them on.",
           },
           {
             icon: "record",
@@ -60,6 +61,85 @@ export default function HealthcarePage() {
           },
         ]}
       />
+      <section
+        className="industry-example container"
+        aria-labelledby="clinic-example-heading"
+      >
+        <div className="industry-example-heading">
+          <h2 id="clinic-example-heading">
+            An evening preference. A clear reception request.
+          </h2>
+          <p>
+            An illustrative administrative enquiry, ready for reception to
+            review.
+          </p>
+        </div>
+        <div className="industry-example-layout">
+          <div className="industry-example-dialogue">
+            <h3>The conversation and readback</h3>
+            <ol>
+              <li>
+                <span>Caller</span>
+                <p>
+                  “Is an evening appointment possible for a general consultation
+                  at your main branch?”
+                </p>
+              </li>
+              <li>
+                <span>Agent</span>
+                <p>“Which day would you prefer?”</p>
+              </li>
+              <li>
+                <span>Caller</span>
+                <p>“Friday, please.”</p>
+              </li>
+              <li>
+                <span>Agent</span>
+                <p>
+                  “A general consultation at the main branch on Friday evening.
+                  Is that correct?”
+                </p>
+              </li>
+              <li>
+                <span>Caller</span>
+                <p>“Yes.”</p>
+              </li>
+            </ol>
+          </div>
+          <div className="industry-example-record">
+            <h3>Confirmed in this example</h3>
+            <dl>
+              <div>
+                <dt>Requested service</dt>
+                <dd>General consultation</dd>
+              </div>
+              <div>
+                <dt>Branch preference</dt>
+                <dd>Main branch</dd>
+              </div>
+              <div>
+                <dt>Preferred time</dt>
+                <dd>Friday evening</dd>
+              </div>
+              <div>
+                <dt>Next step</dt>
+                <dd>Reception reviews availability</dd>
+              </div>
+            </dl>
+            <p className="industry-example-status">
+              Appointment requested · Not booked
+            </p>
+            <p>
+              Reception would check availability and confirm the next step.
+              Medical questions stay with qualified healthcare staff.
+            </p>
+          </div>
+        </div>
+        <p className="industry-example-note">
+          Fictional example. No clinic is contacted and no appointment is
+          booked.
+        </p>
+      </section>
       <section
         className="scope-section container"
         aria-labelledby="scope-heading"

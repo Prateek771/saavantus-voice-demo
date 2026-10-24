@@ -1,31 +1,31 @@
 # Saavantus design system
 
-Authority: the latest October 21, 2026 correction replaces the mistaken Vesper video reference with the supplied Sculpture Hero code. Use its interactive liquid-particle sculpture and artwork-above, copy-below hero composition. Preserve the warm ivory/coral palette, current Saavantus wording and all other page layouts and behavior. Product facts and existing live Sarvam behavior stay authoritative in PRODUCT.md.
+Authority: the owner-approved October 23, 2026 expansion changes homepage and Services messaging to Saavantus's broader automation offering. Keep the interactive liquid-particle sculpture, artwork-above/copy-below composition, warm ivory/coral palette and current typography. Adapt the supplied legacy site's content into this visual world. Detailed voice-agent content lives on the respective industry pages, reached through two compact translucent homepage links. Product facts and existing live Sarvam behavior stay authoritative in PRODUCT.md.
 
 ## Visual direction
 
-Use warm ivory surfaces, deep neutral text and coral actions consistently across the homepage, industry pages, contact, legal routes, navigation, footer and demos. Keep the existing self-hosted DM Sans typography, precise controls, fine borders and readable structured enquiry examples. The supplied screenshot governs the restored homepage hero. Earlier Aqua Voice exploration remains historical inspiration for restraint, not the current palette or hero composition.
+Use warm ivory surfaces, deep neutral text and coral actions consistently across the homepage, Services, industry pages, contact, legal routes, navigation, footer and demos. Keep the existing self-hosted DM Sans typography, precise controls, fine borders and readable structured enquiry examples. The supplied Sculpture Hero governs the retained homepage artwork and composition. Earlier Aqua Voice exploration remains historical inspiration for restraint.
 
-The homepage hero gives the supplied liquid sculpture a wide artwork band above the copy. Below it, the current headline sits left and supporting copy and actions sit right, stacking naturally on phones. Preserve the supplied pixel-sampled WebGL simulation: cursor and touch disturb the material, which settles back into the original sculpture. Adapt its color to ivory/coral. Retain the existing conversation example and honest labels in a compact strip below. This decorative interaction does not indicate live microphone activity. Keep the rest of the site's layout, spacing, typography, colors and interactions unchanged.
+The homepage hero gives the supplied liquid sculpture a wide artwork band above the copy. Below it, a business automation headline sits left and supporting copy and actions sit right, stacking naturally on phones. Preserve the supplied pixel-sampled WebGL simulation: cursor and touch disturb the material, which settles back into the original sculpture. Keep its ivory/coral coloring. The property conversation example belongs on the real estate page. This decorative interaction does not indicate live microphone activity. Retain existing spacing, typography, colors and interactions as the new sections are composed.
 
 ## Shared tokens
 
-| CSS token      | Value     | Use                                    |
-| -------------- | --------- | -------------------------------------- |
-| `--paper`      | `#f7f4ee` | Page canvas                            |
-| `--white`      | `#fffdf9` | Form and product surfaces              |
-| `--soft`       | `#f0e4dc` | Quiet section bands and sample details |
-| `--ink`        | `#17242a` | Headlines and primary information      |
-| `--body`       | `#39464b` | Supporting prose                       |
-| `--muted`      | `#60676b` | Captions, labels, secondary metadata   |
-| `--line`       | `#dfdad2` | Fine borders and dividers              |
-| `--red`        | `#b83223` | Buttons, links, focus, active states   |
-| `--blue`       | `var(--red)` | Compatibility alias for coral actions |
-| `--accent`     | `#da5a47` | Decorative waveform geometry           |
-| `--error`      | `#b42332` | Errors requiring attention             |
-| `--error-soft` | `#fff1f2` | Error surface                          |
-| `--success`    | `#237154` | Confirmed success state                |
-| `--radius`     | `16px`    | Major product surfaces                 |
+| CSS token      | Value        | Use                                    |
+| -------------- | ------------ | -------------------------------------- |
+| `--paper`      | `#f7f4ee`    | Page canvas                            |
+| `--white`      | `#fffdf9`    | Form and product surfaces              |
+| `--soft`       | `#f0e4dc`    | Quiet section bands and sample details |
+| `--ink`        | `#17242a`    | Headlines and primary information      |
+| `--body`       | `#39464b`    | Supporting prose                       |
+| `--muted`      | `#60676b`    | Captions, labels, secondary metadata   |
+| `--line`       | `#dfdad2`    | Fine borders and dividers              |
+| `--red`        | `#b83223`    | Buttons, links, focus, active states   |
+| `--blue`       | `var(--red)` | Compatibility alias for coral actions  |
+| `--accent`     | `#da5a47`    | Decorative waveform geometry           |
+| `--error`      | `#b42332`    | Errors requiring attention             |
+| `--error-soft` | `#fff1f2`    | Error surface                          |
+| `--success`    | `#237154`    | Confirmed success state                |
+| `--radius`     | `16px`       | Major product surfaces                 |
 
 `--blue` is a compatibility alias for the coral `--red` action token. Neither action token is a semantic error color. Existing semantic error and success colors remain unchanged. New error selectors use the error tokens explicitly. Never blanket-force descendant colors to implement the theme; each component assigns its semantic text and surface roles.
 
@@ -46,7 +46,9 @@ The main page grid is 1200px of content inside a 1256px container, with 28px des
 
 ## Page composition
 
-**Homepage:** the sculpture-above, copy-below hero leads into open editorial explanation, two focused industry demonstrations, a three-step conversation workflow and the existing SaaS 4A Framework: Assess, Architect, Adjust, Automate. The 4A sequence is preserved in full. A soft warm-neutral contact invitation closes the page before the light footer.
+**Homepage:** the sculpture-above, copy-below hero introduces business automation. The SaaS 4A Framework (Assess, Architect, Adjust, Automate) explains delivery, followed by operational problems, practical solution showcases, eight service summaries, two compact translucent industry links and a plain explanation of outcomes to measure. A soft warm-neutral contact invitation closes the page before the light footer. Translucency is reserved for the two industry links explicitly requested by the owner; other sections use the existing editorial surfaces and fine rules.
+
+**Services:** an editorial introduction and anchored service index lead to eight service sections. Each explains deliverables, business benefits and concrete use cases, with a contact action. Consolidate AWS provisioning and cloud operations into one offering. Use restrained, readable rows and responsive columns in the existing visual system; no unverified performance guarantees or client results.
 
 **Real estate:** introduce the concrete property enquiry role, then let the visitor try the live voice agent or scripted walkthrough. Sample preferences and the resulting enquiry remain legible on light panels. Follow with the role's workflow, boundaries and a relevant contact action.
 
@@ -62,4 +64,8 @@ Desktop and phone must be reviewed as complete shells, including header, menu, f
 
 ## Brief design history
 
-Earlier local iterations explored a dark conversation canvas, then a near-white/blue palette with a centered waveform hero. The latest user-approved warm ivory/coral palette and screenshot-based split hero supersede those visual directions. Product facts, current copy and existing behavior are preserved.
+Earlier local iterations explored a dark conversation canvas, a near-white/blue palette, a split waveform hero and a video reference. The current warm ivory/coral liquid sculpture supersedes those visual directions. The October 23 expansion broadens homepage copy and adds Services while preserving existing demo behavior.
+
+## Approved brand and AI Discovery refinement — October 23
+
+The full customer-facing name is Saavantus Excellence. Use the owner's selected muted blue logo (public/saavantus-excellence-logo.png), including its S symbol and full lettering, in the header and footer. Its image is framed to remove excess presentation margins and blended into the warm ivory surface without redesigning the mark. Logo blue is local to branding; retain coral controls and current typography/particle hero. Replace the homepage framework with AI Discovery and use /ai-discovery for the guided assessment. This page is an Operate surface: clear question groups, visible progress, local-only state, accessible validation, transparent scoring and evidence coverage.

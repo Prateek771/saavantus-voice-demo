@@ -1,5 +1,8 @@
 import { mkdir, open, readFile, unlink } from "node:fs/promises";
 import { join } from "node:path";
+import { createHash } from "node:crypto";
+import { saveContactRow } from "./google-discovery.ts";
+import { CONTACT_CONSENT_VERSION } from "../contact-sheet.ts";
 import { sameOriginRequest } from "./request-origin.mjs";
 
 type Contact = {
@@ -101,7 +104,7 @@ export function validateContact(input: unknown, now = Date.now()): Validation {
   }
   if (data.consent !== true)
     errors.consent =
-      "Please confirm that Saavantus may contact you about this enquiry.";
+      "Please confirm that Saavantus Excellence may contact you about this enquiry.";
   if (text("website", 0))
     errors.form = "This submission could not be accepted.";
   return Object.keys(errors).length
@@ -153,7 +156,7 @@ async function storeContact(contact: Contact, storePath: string, now: number) {
       appointmentStatus: contact.callbackRequestedAt
         ? "requested-not-booked"
         : "not-requested",
-      consentVersion: "contact-v1",
+      consentVersion: CONTACT_CONSENT_VERSION,
     };
     let handle;
     try {
@@ -167,6 +170,7 @@ async function storeContact(contact: Contact, storePath: string, now: number) {
       return {
         status: matches ? 200 : 409,
         receiptId: saved.receiptId as string,
+        createdAt: saved.createdAt as string,
       };
     }
     try {
@@ -179,7 +183,11 @@ async function storeContact(contact: Contact, storePath: string, now: number) {
       await unlink(file).catch(() => {});
       throw error;
     }
-    return { status: 201, receiptId: record.receiptId };
+    return {
+      status: 201,
+      receiptId: record.receiptId,
+      createdAt: record.createdAt,
+    };
   } finally {
     unlock();
     if (locks.get(file) === current) locks.delete(file);
@@ -193,6 +201,7 @@ export async function handleContactRequest(
     storePath?: string;
     now?: () => number;
     admit?: (now: number) => boolean;
+    googleSave?: typeof saveContactRow;
   } = {},
 ) {
   if (request.method !== "POST")
@@ -215,14 +224,6 @@ export async function handleContactRequest(
       415,
     );
   const now = (options.now ?? Date.now)();
-  if (!(options.admit ?? defaultAdmit)(now))
-    return response(
-      {
-        error:
-          "This preview has reached its hourly submission limit. Please try again later.",
-      },
-      429,
-    );
   const limit = 16384;
   if (Number(request.headers.get("content-length")) > limit)
     return response(
@@ -267,6 +268,15 @@ export async function handleContactRequest(
       },
       422,
     );
+  // Invalid requests must not exhaust the quota reserved for valid enquiries.
+  if (!(options.admit ?? defaultAdmit)(now))
+    return response(
+      {
+        error:
+          "This preview has reached its hourly submission limit. Please try again later.",
+      },
+      429,
+    );
   try {
     const saved = await storeContact(
       result.value,
@@ -281,11 +291,51 @@ export async function handleContactRequest(
         },
         409,
       );
+    const contact = result.value;
+    const fingerprint = createHash("sha256")
+      .update(JSON.stringify(contact))
+      .digest("hex");
+    const row = [
+      contact.requestId,
+      fingerprint,
+      saved.createdAt,
+      contact.name,
+      contact.company,
+      contact.email,
+      contact.phone,
+      contact.industry,
+      contact.requirements,
+      contact.callbackRequestedAt ?? "",
+      contact.callbackTimezone,
+      contact.consent,
+      CONTACT_CONSENT_VERSION,
+      "website-contact",
+      contact.callbackRequestedAt ? "requested-not-booked" : "not-requested",
+    ];
+    try {
+      await (options.googleSave ?? saveContactRow)(
+        contact.requestId,
+        fingerprint,
+        row,
+      );
+    } catch {
+      return response(
+        {
+          saved: false,
+          localSaved: true,
+          receiptId: saved.receiptId,
+          deliveryStatus: "local-only",
+          error:
+            "Your enquiry is saved locally, but Google Sheets storage could not be confirmed. Keep this form open and retry with the same request.",
+        },
+        503,
+      );
+    }
     return response(
       {
         receiptId: saved.receiptId,
         saved: true,
-        deliveryStatus: "local-only",
+        deliveryStatus: "google-sheets",
         appointmentBooked: false,
       },
       saved.status,

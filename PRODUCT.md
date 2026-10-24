@@ -1,4 +1,15 @@
-# Saavantus voice demos — product record
+# Saavantus Excellence automation website — product record
+
+## October 24 homepage booking and founder update
+
+The owner approved a compact homepage vision/help summary and a short introduction
+to founder and CEO Mukesh Kumar Das, using the supplied professional profile.
+The shared footer links to his supplied public LinkedIn URL. No separate About
+page is added. The bottom of the homepage now embeds the owner's live Calendly
+30-minute strategy-call event. This is separate from the simulated property and
+healthcare appointments and does not add a CRM/Sheets booking bridge. The particle
+hero, current theme and existing providers remain. See
+docs/HOMEPAGE_BOOKING_AND_FOUNDER.md for source boundaries and verification.
 
 <!-- impeccable:product-schema 1 -->
 
@@ -18,11 +29,11 @@ web
 - Initial market: India. Initial voice languages: English and Hindi.
 - Visitors should be able to speak to the agents directly in the browser.
 - Copy should be concise, specific, and sufficiently detailed to explain the product.
-- Current authorization: apply a warm ivory and coral palette consistently across the local website, including the homepage, real estate, healthcare, contact, legal routes, navigation, footer and demos. Restore the supplied screenshot’s split homepage hero with copy on the left and an illustrative voice orb on the right. Preserve every current product word, all other page layouts, typography, sizes, radii and interactions, Lenis scrolling, the existing workflow and SaaS 4A copy, verified contact footer, local contact intake, both managed Sarvam agents and their browser voice connection. The GoHighLevel field/appointment handoff remains prepared for the next integration stage. n8n and GoHighLevel remain disconnected; no public deployment is authorised.
+- Current authorization (23 October 2026): expand the homepage to represent Saavantus's full AI and automation offering using the owner's supplied homepage and Services JSX as content references. Keep the current ivory/coral palette, DM Sans, particle sculpture and hero composition. Adapt the 4A framework to business operations; add problem/solution sections, a Services overview and full Services route. Keep only two compact translucent industry links on the homepage and move detailed voice examples to the respective agent pages. Preserve Sarvam demos, walkthroughs, contact intake, verified footer details and motion controls. Show all four updated pages on localhost; no new CRM/calendar/n8n connection or public deployment in this task.
 
 ## Users and intended outcome
 
-Prospective business customers evaluate the agents by role-playing a property enquiry or clinic appointment request. The proposed demo shows both the conversation and the structured result a business team would receive. Public demonstrations and real customer operations are separate environments.
+Prospective business customers understand which repetitive operations can be improved, explore Saavantus Excellence services and assess their AI readiness through AI Discovery, and describe a project through the contact form. Dedicated real estate and healthcare routes let visitors evaluate voice agents through fictional role-play and structured sample outcomes. Public demonstrations and real customer operations are separate environments.
 
 ## Evidence on hand
 
@@ -35,11 +46,11 @@ Prospective business customers evaluate the agents by role-playing a property en
 
 ## Current implementation
 
-Latest hero correction: the user replaced the mistaken video reference with supplied Sculpture Hero code. Use its interactive WebGL liquid-particle sculpture, original image assets and artwork-above/copy-below placement. Keep the existing ivory/coral palette, exact current copy, links and other pages. The illustrative conversation details remain below the headline row. Pause, reduced-motion, offscreen and hidden-page controls gate simulation, with a static image fallback. Earlier orb and video descriptions are historical iterations.
+The retained hero uses the owner-supplied Sculpture Hero code: interactive WebGL liquid particles, original image assets and artwork-above/copy-below placement. The October 23 expansion replaces voice-only hero copy with broader business automation copy and moves the illustrative property details to the real estate page. Pause, reduced-motion, offscreen and hidden-page controls gate simulation, with a static image fallback. Earlier orb and video descriptions are historical iterations.
 
-The latest approved visual update uses warm ivory surfaces, deep neutral text and coral actions consistently across the site. The homepage restores the supplied screenshot’s split hero with current copy on the left and an illustrative voice orb on the right. All other page layouts, typography, sizes, radii, controls, interactions and product wording remain unchanged. Earlier centered blue-wave exploration is superseded by this direction. It explains the existing SaaS 4A Framework (Assess, Architect, Adjust, Automate), verified against saavantus.com. Pinned Lenis smooths wheel scrolling; native touch, reduced-motion preferences, a visible motion pause, visible-by-default text and offscreen animation cleanup preserve usability. Contact intake saves locally with clear status, not to GoHighLevel. Footer contact details are verified against the existing site; no testimonials or client results have been invented. DESIGN.md records the current visual authority.
+Warm ivory surfaces, deep neutral text and coral actions remain consistent across the site. AI Discovery replaces the homepage 4A section with a local-only, 40-question readiness and adoption self-assessment. Pinned Lenis smooths wheel scrolling; native touch, reduced-motion preferences, a visible motion pause, visible-by-default text and offscreen animation cleanup preserve usability. Contact intake saves locally with clear status, not to GoHighLevel. Footer contact details are verified against the existing site; no testimonials or client results have been invented. DESIGN.md records the current visual authority.
 
-A Next.js/TypeScript local preview now implements the three approved pages and deterministic walkthroughs, with sample preferences and appointment/CRM outcomes. Contact/privacy/terms are truthful preview routes. Both Sarvam agents are committed at version 1 and connected through the official browser SDK and a server-only signing proxy. Synthetic streaming checks passed; physical microphone and conversation quality remain unverified. No live scheduling or CRM persistence is implemented. See docs/LOCAL_PREVIEW.md and docs/VERIFICATION.md.
+A Next.js/TypeScript local preview implements the homepage, Services and both industry pages, with deterministic walkthroughs and sample preferences and appointment/CRM outcomes. Contact/privacy/terms are truthful preview routes. Both Sarvam agents are committed at version 1 and connected through the official browser SDK and a server-only signing proxy. Earlier synthetic streaming checks passed; physical microphone and conversation quality remain unverified. No live scheduling or CRM persistence is implemented. See docs/LOCAL_PREVIEW.md and docs/VERIFICATION.md for the original preview checks and docs/AUTOMATION_WEBSITE_PLAN.md for the current expansion.
 
 ## Future connected direction — still pending
 
@@ -56,3 +67,7 @@ Visual/copy direction is approved; the private repository is Prateek771/saavantu
 - Label sample records, simulated bookings, and unconnected features honestly.
 - Keep healthcare administrative; route clinical decisions to qualified staff.
 - Preserve credentials, existing live operations, and the selected providers.
+
+## October 23 approved brand and discovery update
+
+Use the supplied muted blue Saavantus Excellence logo in the header and footer; preserve its original artwork and the site theme. Customer-facing brand references use Saavantus Excellence; technical identifiers and existing email/domain addresses stay unchanged. Replace Our approach navigation with AI Discovery and a dedicated /ai-discovery page. Results are deterministic, self-reported and local to the page session, with Not sure and explicit evidence coverage. No answers are persisted or sent to APIs or CRM. See docs/AI_DISCOVERY_PLAN.md.

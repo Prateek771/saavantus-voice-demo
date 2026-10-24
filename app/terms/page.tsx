@@ -6,9 +6,9 @@ export default function Terms() {
     <article className="container legal-page">
       <h1>A demonstration, clearly labelled.</h1>
       <p>
-        This local application lets you review Saavantus's proposed website and
-        workflow with fictional examples. Live voice is available only when the
-        page reports that Sarvam is configured.
+        This local application lets you review Saavantus Excellence's proposed
+        website and workflow with fictional examples. Live voice is available
+        only when the page reports that Sarvam is configured.
       </p>
       <h2>Sample conversations and records</h2>
       <p>
@@ -18,12 +18,60 @@ export default function Terms() {
         viewing or clinic visit. Scripted walkthroughs do not send contact
         details, enquiries or messages to a business.
       </p>
+      <h2>Strategy call bookings</h2>
+      <p>
+        The homepage Calendly calendar offers real 30-minute strategy calls with
+        Mukesh Kumar Das. A booking is confirmed by Calendly after you complete
+        its scheduling process. It does not reserve a property viewing or
+        healthcare appointment; those voice-demo examples remain simulated.
+      </p>
       <h2>Contact form preview</h2>
       <p>
-        The contact form saves an enquiry locally for the owner to review. It
-        does not send email or create a CRM record. Requested callback times are
+        The contact form retains a local recovery copy and attempts to save your
+        enquiry to Saavantus Excellence's Google Sheet. A success message
+        confirms Google storage; a failure leaves delivery unconfirmed. It does
+        not send email or create a CRM record. Requested callback times are
         preferences only; no appointment, availability or response time is
         guaranteed. Use fictional details during local testing.
+      </p>
+      <h2>AI Discovery self-assessment</h2>
+      <p>
+        AI Discovery uses fixed scoring and recommendation rules, not an AI
+        model. Results reflect your self-reported answers and the evidence you
+        have available. They are not an independent audit, certification,
+        compliance determination or guarantee of business value. "Not sure"
+        responses reduce answer coverage; review the reported gaps and validate
+        priorities with your team before acting.
+      </p>
+      <p>
+        A profile and required data consent are part of the assessment flow;
+        marketing consent is optional. Connection status is shown before you
+        begin. When disconnected, the preview does not submit or save your
+        profile or answers to Google Sheets. Email verification still processes
+        your address through the server and email provider. When connected,
+        submitting a completed assessment sends your profile, answers and
+        results for storage in Saavantus Excellence's Google Sheet. Check the
+        submission status: an unconfirmed or failed network request does not
+        establish whether a record was saved. You can separately request a PDF
+        download or an email of your report to your verified business address.
+        These actions require available server services; email provider
+        acceptance does not guarantee inbox delivery.
+      </p>
+      <h2>Email verification and report use</h2>
+      <p>
+        A verification code establishes access to the supplied mailbox at the
+        time of verification. Syntax, disposable-domain and DNS mail-record
+        checks are screening measures; they do not guarantee that an address is
+        permanent, authentic or associated with a particular business. Use an
+        address you control and do not request codes for other people.
+      </p>
+      <p>
+        Review your profile and responses before downloading or emailing a
+        report. Delete downloaded copies when no longer needed and manage
+        emailed copies through your mailbox. Downloading or emailing a report
+        does not remove the underlying saved assessment. Request manual deletion
+        from the owner where needed. A timeout or missing confirmation is not
+        proof that an email was not sent; check your inbox before retrying.
       </p>
       <h2>Healthcare demonstration</h2>
       <p>
