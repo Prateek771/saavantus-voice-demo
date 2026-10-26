@@ -4,7 +4,7 @@ import { randomUUID } from "node:crypto";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import config from "../next.config.ts";
+import config from "../next.config.mjs";
 import { createDiscoveryHandlers } from "../lib/server/discovery-submission.ts";
 import { createEmailVerificationHandlers } from "../lib/server/discovery-email-verification.ts";
 import { createDiscoveryReportHandlers } from "../lib/server/discovery-report-delivery.ts";
