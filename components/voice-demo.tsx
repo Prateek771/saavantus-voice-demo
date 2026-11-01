@@ -5,6 +5,9 @@ import type {
   InteractionConfig,
 } from "sarvam-conv-ai-sdk/browser";
 import type { Industry } from "@/lib/demo";
+import { VoiceOrb } from "@/components/voice-orb";
+import { MotionToggle } from "@/components/motion-provider";
+import { startVoiceAudio } from "@/lib/voice-audio";
 import "@/app/demo.css";
 
 type Setup = {
@@ -18,6 +21,8 @@ type Setup = {
 };
 type Line = { role: string; content: string };
 export function VoiceDemo({ industry }: { industry: Industry }) {
+  const [open, setOpen] = useState(false);
+  const dialog = useRef<HTMLDialogElement>(null);
   const [setup, setSetup] = useState<Setup>();
   const [consent, setConsent] = useState(false);
   const [language, setLanguage] = useState<"English" | "Hindi">("English");
@@ -88,7 +93,16 @@ export function VoiceDemo({ industry }: { industry: Industry }) {
   }, [industry, end]);
   useEffect(() => {
     transcript.current?.scrollTo({ top: transcript.current.scrollHeight });
-  }, [lines]);
+  }, [lines, open]);
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog.current?.showModal();
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [open]);
   async function start() {
     if (busy.current || !consent || !setup?.ready || !setup.config) return;
     busy.current = true;
@@ -120,7 +134,11 @@ export function VoiceDemo({ industry }: { industry: Industry }) {
         audioInterface: {
           start: async (callback) => {
             try {
-              await audio.start(callback);
+              await startVoiceAudio(
+                audio,
+                callback,
+                () => attempt === generation.current && mounted.current,
+              );
             } catch (reason) {
               if (attempt === generation.current) {
                 const name = reason instanceof Error ? reason.name : "";
@@ -231,110 +249,194 @@ export function VoiceDemo({ industry }: { industry: Industry }) {
           Speak in English or Hindi. Use fictional details for this
           demonstration. CRM updates and real appointments are not connected.
         </p>
-        <div className="voice-workspace">
-          <div className="voice-setup">
-            <label className="voice-language">
-              Starting language{" "}
-              <select
-                value={language}
-                disabled={active}
-                onChange={(event) =>
-                  setLanguage(event.target.value as "English" | "Hindi")
-                }
-              >
-                <option>English</option>
-                <option>Hindi</option>
-              </select>
-            </label>
-            <p className="voice-disclosure">
-              When you start, your microphone audio is sent to Sarvam for AI
-              processing. Sarvam may retain recordings and transcripts under
-              your workspace settings. This page keeps the displayed transcript
-              in memory only.
-            </p>
-            <label className="voice-consent">
-              <input
-                type="checkbox"
-                checked={consent}
-                disabled={active}
-                onChange={(event) => setConsent(event.target.checked)}
-              />{" "}
-              I understand and want to start a voice demo using fictional
-              information.
-            </label>
-            {!setup?.ready && setup?.message && (
-              <p role="status">{setup.message}</p>
-            )}
-            <div className="voice-controls">
-              <button
-                className="button primary"
-                disabled={!setup?.ready || !consent || active}
-                onClick={() => void start()}
-              >
-                Start voice demo
-              </button>
-              <button
-                className="button secondary"
-                disabled={!active}
-                onClick={() => void end()}
-              >
-                End conversation
-              </button>
-              <button
-                className="button secondary"
-                disabled={!active || !agent.current}
-                aria-pressed={muted}
-                onClick={() => {
-                  const current = agent.current;
-                  if (!current) return;
-                  if (current.isMuted()) current.unmute();
-                  else current.mute();
-                  setMuted(current.isMuted());
-                }}
-              >
-                {muted ? "Unmute" : "Mute"}
-              </button>
-            </div>
-          </div>
-          <div className="voice-session">
-            <div className="voice-session-heading">
-              <span>Conversation transcript</span>
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                aria-hidden="true"
-              >
-                <rect x="9" y="3" width="6" height="12" rx="3" />
-                <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8" />
-              </svg>
-            </div>
-            <p className="voice-session-status" role="status">
-              {muted ? "Microphone muted." : status}
-            </p>
-            {error && <p role="alert">{error}</p>}
-            <div
-              className="voice-transcript"
-              ref={transcript}
-              role="log"
-              aria-live="polite"
-              aria-label="Live voice transcript"
-            >
-              {lines.length ? (
-                lines.map((line, index) => (
-                  <p key={index}>
-                    <strong>{line.role}:</strong> {line.content}
+        <button
+          type="button"
+          className="button primary"
+          aria-haspopup="dialog"
+          onClick={() => setOpen(true)}
+        >
+          Open AI voice demo
+        </button>
+        <dialog
+          ref={dialog}
+          className="voice-dialog"
+          aria-labelledby={`${industry}-voice-dialog-title`}
+          data-lenis-prevent
+          onClose={() => {
+            setOpen(false);
+            if (busy.current || agent.current) void end();
+          }}
+        >
+          {open && (
+            <>
+              <div className="voice-dialog-heading">
+                <h2 id={`${industry}-voice-dialog-title`}>
+                  {industry === "real-estate"
+                    ? "Your property assistant"
+                    : "Your clinic receptionist"}
+                </h2>
+                <button
+                  type="button"
+                  className="voice-dialog-close"
+                  onClick={() => dialog.current?.close()}
+                  aria-label="Close voice demo"
+                >
+                  ×
+                </button>
+              </div>
+              <div className="voice-workspace">
+                <div className="voice-setup">
+                  <button
+                    type="button"
+                    className="voice-orb-start"
+                    disabled={!setup?.ready || !consent || active}
+                    onClick={() => void start()}
+                    aria-describedby={`${industry}-orb-help`}
+                  >
+                    <VoiceOrb
+                      activity={
+                        muted || !active
+                          ? 0
+                          : status.startsWith("Agent speaking")
+                            ? 1
+                            : status.startsWith("Listening")
+                              ? 0.45
+                              : 0.15
+                      }
+                    />
+                    <span className="voice-orb-microphone" aria-hidden="true">
+                      <svg
+                        width="22"
+                        height="22"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                      >
+                        <rect x="9" y="3" width="6" height="12" rx="3" />
+                        <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8" />
+                      </svg>
+                    </span>
+                    <span>
+                      {active
+                        ? muted
+                          ? "Microphone muted"
+                          : status
+                        : "Click to talk"}
+                    </span>
+                  </button>
+                  <p className="voice-orb-help" id={`${industry}-orb-help`}>
+                    {active
+                      ? "Follow the conversation in the live transcript."
+                      : "Choose your language and agree below, then click the orb to start."}
                   </p>
-                ))
-              ) : (
-                <p>Your conversation transcript will appear here.</p>
-              )}
-            </div>
-          </div>
-        </div>
+                  <div className="voice-controls">
+                    <button
+                      className="button secondary"
+                      disabled={!active}
+                      onClick={() => void end()}
+                    >
+                      End conversation
+                    </button>
+                    <button
+                      className="button secondary"
+                      disabled={!active || !agent.current}
+                      aria-pressed={muted}
+                      onClick={() => {
+                        const current = agent.current;
+                        if (!current) return;
+                        if (current.isMuted()) current.unmute();
+                        else current.mute();
+                        setMuted(current.isMuted());
+                      }}
+                    >
+                      {muted ? "Unmute" : "Mute"}
+                    </button>
+                  </div>
+                </div>
+                <div className="voice-session">
+                  <div className="voice-session-heading">
+                    <span>Live transcript</span>
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      aria-hidden="true"
+                    >
+                      <rect x="9" y="3" width="6" height="12" rx="3" />
+                      <path d="M5 10v2a7 7 0 0 0 14 0v-2M12 19v3m-4 0h8" />
+                    </svg>
+                  </div>
+                  <p className="voice-session-status" role="status">
+                    {muted ? "Microphone muted." : status}
+                  </p>
+                  {error && <p role="alert">{error}</p>}
+                  <div
+                    className="voice-transcript"
+                    ref={transcript}
+                    role="log"
+                    aria-live="polite"
+                    aria-label="Live voice transcript"
+                  >
+                    {lines.length ? (
+                      lines.map((line, index) => (
+                        <p key={index}>
+                          <strong>{line.role}:</strong> {line.content}
+                        </p>
+                      ))
+                    ) : (
+                      <p>Your conversation transcript will appear here.</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="voice-dialog-settings">
+                <label className="voice-language">
+                  Starting language{" "}
+                  <select
+                    value={language}
+                    disabled={active}
+                    onChange={(event) =>
+                      setLanguage(event.target.value as "English" | "Hindi")
+                    }
+                  >
+                    <option>English</option>
+                    <option>Hindi</option>
+                  </select>
+                </label>
+                <p className="voice-disclosure">
+                  When you start, your microphone audio is sent to Sarvam for AI
+                  processing. Sarvam may retain recordings and transcripts under
+                  your workspace settings. This page keeps the displayed
+                  transcript in memory only.
+                </p>
+                <label className="voice-consent">
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    disabled={active}
+                    onChange={(event) => setConsent(event.target.checked)}
+                  />{" "}
+                  I understand and want to start a voice demo using fictional
+                  information.
+                </label>
+                {!setup?.ready && setup?.message && (
+                  <p role="status">{setup.message}</p>
+                )}
+              </div>
+              <div className="voice-dialog-footer">
+                <p className="voice-disclosure">
+                  Up to three minutes. Use fictional details. No booking or CRM
+                  save occurs.
+                </p>
+                <MotionToggle />
+              </div>
+            </>
+          )}
+        </dialog>
         <p className="voice-disclosure voice-session-limit">
           Up to three minutes per demo. No booking, CRM save or human transfer
           occurs. Healthcare demo: appointment administration only.

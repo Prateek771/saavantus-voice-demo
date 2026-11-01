@@ -271,10 +271,9 @@ export function createEmailVerificationHandlers(deps: Dependencies) {
           { error: "Enter a valid email and verification action." },
           400,
         );
-      if (
-        action === "verify" &&
-        (typeof data.code !== "string" || !/^\d{6}$/.test(data.code))
-      )
+      const submittedCode =
+        typeof data.code === "string" ? data.code.trim() : "";
+      if (action === "verify" && !/^\d{6}$/.test(submittedCode))
         return json({ error: "Enter the six-digit code." }, 400);
       try {
         return await locked(directory, async (state, key) => {
@@ -313,7 +312,7 @@ export function createEmailVerificationHandlers(deps: Dependencies) {
             session.attempts++;
             const expected = Buffer.from(session.otp, "hex"),
               provided = Buffer.from(
-                codeHash(key, id, email, data.code as string),
+                codeHash(key, id, email, submittedCode),
                 "hex",
               );
             if (

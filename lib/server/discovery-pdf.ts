@@ -188,50 +188,6 @@ export async function generateDiscoveryPdf(
         muted,
       );
   }
-  heading("Response coverage");
-  text(
-    `${result.known}/40 known responses · ${40 - result.known} Not sure.`,
-    14,
-  );
-  room(60);
-  for (let i = 0; i < 40; i++) {
-    page.drawRectangle({
-      x: M + (i % 20) * 24.9,
-      y: y - Math.floor(i / 20) * 15,
-      width: 19,
-      height: 8,
-      color: i < result.known ? red : line,
-    });
-  }
-  y -= 40;
-  text(
-    "Each mark represents one response, grouped by known status rather than question order.",
-    8,
-    muted,
-  );
-  heading("Workflow context");
-  const total = profile.applicableWorkflows,
-    production = profile.aiProductionWorkflows;
-  if (total !== "" && production !== "" && Number(total) > 0) {
-    bar(
-      "AI workflows in production",
-      (Number(production) / Number(total)) * 100,
-      `${Number(production).toLocaleString("en-IN")} of ${Number(total).toLocaleString("en-IN")} applicable workflows. Separate from assessment scores.`,
-      false,
-    );
-  } else
-    text(
-      total === "0"
-        ? "No applicable workflows reported; a percentage cannot be calculated with a zero denominator."
-        : "Workflow percentage unavailable. Both optional counts are needed.",
-      10,
-      muted,
-    );
-  text(
-    "This report is rule-based, not a certification, audit or AI-generated analysis. Low response coverage limits what can be concluded. No business outcomes are guaranteed.",
-    9,
-    muted,
-  );
   newSection("Dimension dashboard");
   for (const d of result.dimensions)
     bar(
@@ -337,8 +293,8 @@ export async function generateDiscoveryPdf(
     ["Job title", profile.jobTitle],
     ["Country", profile.country],
     ["Phone", profile.phone],
-    ["Applicable workflows", total],
-    ["AI workflows in production", production],
+    ["Applicable workflows", profile.applicableWorkflows],
+    ["AI workflows in production", profile.aiProductionWorkflows],
     ["Data processing consent", profile.dataConsent ? "Yes" : "No"],
     ["Marketing consent", profile.marketingConsent ? "Yes" : "No"],
   ]) {

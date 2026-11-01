@@ -173,7 +173,7 @@ export function createDiscoveryReportHandlers(deps: Dependencies) {
           profile,
           answers,
           model: MODEL_VERSION,
-          report: "summary-v2",
+          report: "summary-v3",
         }),
       );
       let lock: Awaited<ReturnType<typeof open>> | undefined;

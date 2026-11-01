@@ -93,7 +93,7 @@ export function DiscoveryEmailVerification({
         body: JSON.stringify({
           action,
           email: target,
-          ...(action === "verify" ? { code } : {}),
+          ...(action === "verify" ? { code: code.trim() } : {}),
         }),
       });
       const data = await response.json();
@@ -177,7 +177,7 @@ export function DiscoveryEmailVerification({
           <button
             type="button"
             className="button secondary"
-            disabled={!ready || busy || !code.trim()}
+            disabled={!ready || busy || !/^\d{6}$/.test(code.trim())}
             onClick={() => act("verify")}
           >
             Verify code

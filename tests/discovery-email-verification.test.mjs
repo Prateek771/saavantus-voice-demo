@@ -55,6 +55,64 @@ async function fixture(t, overrides = {}) {
 }
 const cookieOf = (response) => response.headers.get("set-cookie").split(";")[0];
 
+test("a code copied with surrounding whitespace verifies the bound email", async (t) => {
+  const f = await fixture(t);
+  const send = await f.handlers.POST(request({ action: "send", email }));
+  const cookie = cookieOf(send);
+  const response = await f.handlers.POST(
+    request(
+      { action: "verify", email, code: ` \u00a0${f.sent[0].code}\r\n` },
+      cookie,
+    ),
+  );
+  assert.equal(response.status, 200);
+  assert.equal(
+    await requireVerifiedEmail(request({}, cookie), email, {
+      directory: f.directory,
+      now: f.now,
+    }),
+    true,
+  );
+});
+
+test("malformed verification codes cannot verify a session or consume its attempts", async (t) => {
+  const f = await fixture(t);
+  const send = await f.handlers.POST(request({ action: "send", email }));
+  const cookie = cookieOf(send);
+  const valid = f.sent[0].code;
+  for (const code of [
+    undefined,
+    null,
+    123456,
+    "",
+    "     ",
+    valid.slice(1),
+    `${valid}7`,
+    `x${valid}`,
+    `${valid.slice(0, 3)} ${valid.slice(3)}`,
+  ]) {
+    const response = await f.handlers.POST(
+      request({ action: "verify", email, code }, cookie),
+    );
+    assert.equal(response.status, 400);
+    assert.equal(
+      await requireVerifiedEmail(request({}, cookie), email, {
+        directory: f.directory,
+        now: f.now,
+      }),
+      false,
+    );
+  }
+  assert.equal(
+    (
+      await f.handlers.POST(
+        request({ action: "verify", email, code: valid }, cookie),
+      )
+    ).status,
+    200,
+  );
+});
+
 test("spoofed forwarding headers cannot bypass the local preview send quota", async (t) => {
   const f = await fixture(t);
   for (let i = 0; i < 20; i++) {
