@@ -25,13 +25,6 @@ export function Header() {
       <a href="#main" className="skip-link">
         Skip to content
       </a>
-      <div className="preview-bar">
-        <span className="status-dot" />
-        Local preview{" "}
-        <span className="preview-detail">
-          · Voice demos and scripted walkthroughs. CRM not connected.
-        </span>
-      </div>
       <header className="site-header">
         <div className="container nav-wrap">
           <Link

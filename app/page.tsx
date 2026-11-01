@@ -4,6 +4,7 @@ import { Arrow, MarketingIcon } from "@/components/marketing";
 import { VoiceScene } from "@/components/voice-scene";
 import { Icon } from "@/components/ui";
 import { services } from "@/lib/services";
+import { Framework4A } from "@/components/framework-4a";
 import "./marketing.css";
 import "./home.css";
 
@@ -125,6 +126,8 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      <Framework4A />
 
       <section className="home-problems" aria-labelledby="problems-title">
         <div className="container home-editorial-split">

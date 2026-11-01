@@ -1,12 +1,11 @@
 "use client";
-import { useEffect, useRef, useId } from "react";
+import { useEffect, useRef } from "react";
 import { useMotionState } from "@/components/motion-provider";
 import { createMotionClock } from "@/lib/clarity-clock.mjs";
 import type { createLensRenderer } from "@/lib/clarity-lens-renderer";
 
 export function ClarityLens() {
-  const cropId = useId(),
-    root = useRef<HTMLDivElement>(null),
+  const root = useRef<HTMLDivElement>(null),
     canvas = useRef<HTMLCanvasElement>(null);
   const controller = useRef<(() => void) | null>(null);
   const { paused, reduced } = useMotionState();
@@ -42,7 +41,7 @@ export function ClarityLens() {
       renderer?.dispose();
       clock = undefined;
       renderer = undefined;
-      element.dataset.renderer = "poster";
+      element.dataset.renderer = "fallback";
       element.dataset.running = "false";
       surface.style.opacity = "0";
     };
@@ -158,7 +157,7 @@ export function ClarityLens() {
     <div
       ref={root}
       className="clarity-lens"
-      data-renderer="poster"
+      data-renderer="loading"
       aria-hidden="true"
       style={{
         position: "relative",
@@ -172,25 +171,6 @@ export function ClarityLens() {
           "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
       }}
     >
-      <svg
-        viewBox="0 115 1586 480"
-        width="100%"
-        height="100%"
-        focusable="false"
-        style={{ position: "absolute", inset: 0, overflow: "hidden" }}
-      >
-        <defs>
-          <clipPath id={cropId}>
-            <rect x="0" y="115" width="1586" height="480" />
-          </clipPath>
-        </defs>
-        <image
-          href="/art/clarity-lens-reference.png"
-          width="1586"
-          height="992"
-          clipPath={`url(#${cropId})`}
-        />
-      </svg>
       <canvas
         ref={canvas}
         style={{
@@ -200,6 +180,7 @@ export function ClarityLens() {
           width: "100%",
           height: "100%",
           opacity: 0,
+          transition: "opacity 0.4s ease-out",
         }}
       />
       <div
