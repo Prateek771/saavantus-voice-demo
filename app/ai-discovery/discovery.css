@@ -585,34 +585,7 @@
   }
 }
 
-.discovery-email-verification {
-  border-top: 1px solid var(--line);
-  padding-top: 24px;
-  margin-top: 28px;
-}
-.discovery-email-actions {
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-block: 18px;
-}
-.discovery-email-actions label {
-  display: grid;
-  gap: 8px;
-  font-size: 14px;
-}
-.discovery .discovery-email-actions input {
-  width: 180px;
-  height: 48px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--paper);
-  color: var(--ink);
-  padding: 10px 12px;
-  font: inherit;
-}
-.discovery-report-email {
+.discovery-report-download {
   max-width: 48ch;
   overflow-wrap: anywhere;
 }
@@ -620,8 +593,7 @@
   display: none;
 }
 @media print {
-  body:has(.discovery-results) .discovery-report-email,
-  body:has(.discovery-results) .discovery-email-verification {
+  body:has(.discovery-results) .discovery-report-download {
     display: none !important;
   }
   body:has(.discovery-results) .discovery-print-watermark {

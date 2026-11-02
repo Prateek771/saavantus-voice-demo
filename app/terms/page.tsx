@@ -34,44 +34,28 @@ export default function Terms() {
         preferences only; no appointment, availability or response time is
         guaranteed. Use fictional details during local testing.
       </p>
-      <h2>AI Discovery self-assessment</h2>
+      <h2>AI Discovery and report use</h2>
       <p>
-        AI Discovery uses fixed scoring and recommendation rules, not an AI
-        model. Results reflect your self-reported answers and the evidence you
-        have available. They are not an independent audit, certification,
-        compliance determination or guarantee of business value. "Not sure"
-        responses reduce answer coverage; review the reported gaps and validate
-        priorities with your team before acting.
+        AI Discovery is a self-reported assessment using fixed scoring rules,
+        not an independent audit, certification, medical opinion or guarantee of
+        business outcomes. Provide accurate details and use a business email you
+        control. The app checks email formatting but does not verify mailbox
+        ownership.
       </p>
       <p>
-        A profile and required data consent are part of the assessment flow;
-        marketing consent is optional. Connection status is shown before you
-        begin. When disconnected, the preview does not submit or save your
-        profile or answers to Google Sheets. Email verification still processes
-        your address through the server and email provider. When connected,
+        With the required data consent and an available Google connection,
         submitting a completed assessment sends your profile, answers and
         results for storage in Saavantus Excellence's Google Sheet. Check the
         submission status: an unconfirmed or failed network request does not
-        establish whether a record was saved. You can separately request a PDF
-        download or an email of your report to your verified business address.
-        These actions require available server services; email provider
-        acceptance does not guarantee inbox delivery.
-      </p>
-      <h2>Email verification and report use</h2>
-      <p>
-        A verification code establishes access to the supplied mailbox at the
-        time of verification. Syntax, disposable-domain and DNS mail-record
-        checks are screening measures; they do not guarantee that an address is
-        permanent, authentic or associated with a particular business. Use an
-        address you control and do not request codes for other people.
+        establish whether a record was saved.
       </p>
       <p>
-        Review your profile and responses before downloading or emailing a
-        report. Delete downloaded copies when no longer needed and manage
-        emailed copies through your mailbox. Downloading or emailing a report
-        does not remove the underlying saved assessment. Request manual deletion
-        from the owner where needed. A timeout or missing confirmation is not
-        proof that an email was not sent; check your inbox before retrying.
+        You can download the report as a PDF or use Print / save PDF. Reports
+        are not emailed. Review your profile and responses before downloading,
+        and delete downloaded copies when no longer needed. Downloading does not
+        remove the saved assessment; request manual deletion from the owner
+        where needed. Server-generated downloads require available server
+        services.
       </p>
       <h2>Healthcare demonstration</h2>
       <p>

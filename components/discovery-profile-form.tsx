@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { DiscoveryEmailVerification } from "@/components/discovery-email-controls";
 import {
   INDUSTRIES,
   ORGANIZATION_SIZES,
@@ -19,16 +18,6 @@ export function DiscoveryProfileForm({
   ready: boolean | null;
 }) {
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const latestProfile = useRef(profile);
-  latestProfile.current = profile;
-  const [verified, setVerified] = useState(false);
-  const [checking, setChecking] = useState(false);
-  const normalizedEmail = profile.businessEmail.trim().toLowerCase();
-  const currentEmail = useRef(normalizedEmail);
-  currentEmail.current = normalizedEmail;
-  useEffect(() => {
-    setVerified(false);
-  }, [normalizedEmail]);
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     heading.current?.focus();
@@ -54,7 +43,7 @@ export function DiscoveryProfileForm({
     <form
       className="discovery-form"
       noValidate
-      onSubmit={async (event) => {
+      onSubmit={(event) => {
         event.preventDefault();
         const validation = validateProfile(profile);
         if (!validation.ok) {
@@ -63,43 +52,9 @@ export function DiscoveryProfileForm({
           document.getElementById(`profile-${first}`)?.focus();
           return;
         }
-        if (checking) return;
-        const email = validation.value.businessEmail;
-        setChecking(true);
-        try {
-          const response = await fetch(
-            `/api/discovery/email-verification?email=${encodeURIComponent(email)}`,
-            {
-              cache: "no-store",
-              headers: { "X-Saavantus-Discovery": "1" },
-              signal: AbortSignal.timeout(15000),
-            },
-          );
-          const status = await response.json();
-          if (currentEmail.current !== email) return;
-          if (!response.ok || status.verified !== true) {
-            setVerified(false);
-            setErrors({
-              businessEmail: "Verify this business email before continuing.",
-            });
-            return;
-          }
-          const latest = validateProfile(latestProfile.current);
-          if (!latest.ok) {
-            setErrors(latest.errors);
-            return;
-          }
-          setErrors({});
-          onChange(latest.value);
-          onContinue();
-        } catch {
-          setErrors({
-            businessEmail:
-              "Email verification could not be confirmed. Please try again.",
-          });
-        } finally {
-          setChecking(false);
-        }
+        setErrors({});
+        onChange(validation.value);
+        onContinue();
       }}
     >
       <h2 ref={heading} tabIndex={-1}>
@@ -185,10 +140,6 @@ export function DiscoveryProfileForm({
           );
         })}
       </div>
-      <DiscoveryEmailVerification
-        email={profile.businessEmail}
-        onVerifiedChange={setVerified}
-      />
       <p className="discovery-note">
         Workflow counts are optional context. They do not change the assessment
         scores.
@@ -234,12 +185,8 @@ export function DiscoveryProfileForm({
         </label>
       </div>
       <div className="discovery-actions">
-        <button
-          type="submit"
-          className="button"
-          disabled={!verified || checking}
-        >
-          {checking ? "Checking verification..." : "Continue to assessment"}
+        <button type="submit" className="button">
+          Continue to assessment
         </button>
       </div>
     </form>

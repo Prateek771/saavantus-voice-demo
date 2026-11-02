@@ -6,7 +6,6 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import config from "../next.config.mjs";
 import { createDiscoveryHandlers } from "../lib/server/discovery-submission.ts";
-import { createEmailVerificationHandlers } from "../lib/server/discovery-email-verification.ts";
 import { createDiscoveryReportHandlers } from "../lib/server/discovery-report-delivery.ts";
 import {
   emptyProfile,
@@ -55,7 +54,6 @@ test("rotating caller-supplied forwarding headers cannot reset the assessment li
     save: async () => {
       throw Error("no external writes");
     },
-    verifyEmail: async () => true,
   });
   for (let i = 0; i < 10; i++)
     assert.equal(
@@ -106,18 +104,25 @@ test("invalid contact requests cannot consume the accepted-submission budget", a
   );
 });
 
-test("unverified assessments cannot consume the verified-submission budget", async () => {
+test("invalid assessments cannot consume the valid-submission budget", async () => {
+  let providerChecks = 0;
   const h = createDiscoveryHandlers({
     ready: async () => {
-      throw Error("must not check provider");
+      providerChecks++;
+      return false;
     },
     save: async () => {
       throw Error("must not save");
     },
-    verifyEmail: async () => false,
   });
-  for (let i = 0; i < 12; i++)
-    assert.equal((await h.POST(request(payload()))).status, 403);
+  for (let i = 0; i < 12; i++) {
+    const data = payload();
+    data.profile.businessEmail = "invalid";
+    assert.equal((await h.POST(request(data))).status, 400);
+  }
+  assert.equal(providerChecks, 0);
+  assert.equal((await h.POST(request(payload()))).status, 503);
+  assert.equal(providerChecks, 1);
 });
 
 test("public readiness checks coalesce concurrent provider calls and expire", async () => {
@@ -141,50 +146,14 @@ test("public readiness checks coalesce concurrent provider calls and expire", as
   assert.equal(calls, 2);
 });
 
-test("email status checks share readiness only, never verified-address status", async () => {
-  let calls = 0;
-  const h = createEmailVerificationHandlers({
-    mailReady: async () => {
-      calls++;
-      return true;
-    },
-    sendCode: async () => {
-      throw Error("no email");
-    },
-  });
-  const responses = await Promise.all(
-    Array.from({ length: 8 }, (_, i) =>
-      h.GET(
-        new Request(
-          `http://localhost:3100/api/discovery/email-verification?email=fixture${i}@example.test`,
-          {
-            headers: {
-              host: "localhost:3100",
-              "sec-fetch-site": "same-origin",
-              "x-saavantus-discovery": "1",
-            },
-          },
-        ),
-      ),
-    ),
-  );
-  assert.equal(calls, 1);
-  for (const r of responses)
-    assert.deepEqual(await r.json(), { ready: true, verified: false });
-});
-
-test("verified PDF requests have a bounded per-address budget and recover", async () => {
+test("PDF requests without verification have a bounded per-address budget and recover", async () => {
   let generated = 0,
     time = 100000;
   const h = createDiscoveryReportHandlers({
     now: () => time,
-    verify: async () => true,
     generate: async () => {
       generated++;
       return new TextEncoder().encode("%PDF-fixture");
-    },
-    send: async () => {
-      throw Error("no email");
     },
   });
   for (let i = 0; i < 10; i++)
@@ -209,15 +178,11 @@ test("PDF concurrency is bounded and generation failures release capacity", asyn
     release = resolve;
   });
   const h = createDiscoveryReportHandlers({
-    verify: async () => true,
     generate: async () => {
       if (++active === 2) resolveStarted();
       await gate;
       active--;
       return new TextEncoder().encode("%PDF-fixture");
-    },
-    send: async () => {
-      throw Error("no email");
     },
   });
   const first = h.PDF(request(payload())),
@@ -242,13 +207,9 @@ test("PDF concurrency is bounded and generation failures release capacity", asyn
   assert.equal(active, 0);
   let fail = true;
   const failures = createDiscoveryReportHandlers({
-    verify: async () => true,
     generate: async () => {
       if (fail) throw Error("fixture");
       return new Uint8Array([1]);
-    },
-    send: async () => {
-      throw Error("no email");
     },
   });
   for (let i = 0; i < 3; i++)

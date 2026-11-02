@@ -71,25 +71,27 @@ test("submission requires exactly forty valid answers and rejects forged scores"
   assert.equal(validateDiscovery(invalid).ok, false);
 });
 
-test("unverified email and missing verifier fail closed before storage", async () => {
+test("a valid profile saves without email verification; invalid email and missing consent still fail", async () => {
   let calls = 0;
   const base = {
     ready: async () => true,
     save: async () => {
       calls++;
-      return { receiptId: "must-not-save" };
+      return { receiptId: "receipt" };
     },
   };
-  for (const deps of [base, { ...base, verifyEmail: async () => false }]) {
-    const response = await createDiscoveryHandlers(deps).POST(request());
-    assert.equal(response.status, 403);
+  const h = createDiscoveryHandlers(base);
+  assert.equal((await h.POST(request())).status, 200);
+  for (const patch of [{ businessEmail: "invalid" }, { dataConsent: false }]) {
+    const data = payload();
+    Object.assign(data.profile, patch);
+    assert.equal((await h.POST(request(data))).status, 400);
   }
-  assert.equal(calls, 0);
+  assert.equal(calls, 1);
 });
 test("request boundary, JSON and body size fail before storage", async () => {
   let calls = 0;
   const h = createDiscoveryHandlers({
-    verifyEmail: async () => true,
     ready: async () => true,
     save: async () => {
       calls++;
@@ -120,7 +122,6 @@ test("request boundary, JSON and body size fail before storage", async () => {
 test("server scores, schema order, unknowns and stable retry fingerprints", async () => {
   const rows = [];
   const h = createDiscoveryHandlers({
-    verifyEmail: async () => true,
     ready: async () => true,
     save: async (id, hash, row) => {
       rows.push({ id, hash, row });
@@ -147,7 +148,6 @@ test("server scores, schema order, unknowns and stable retry fingerprints", asyn
 });
 test("unconfigured or failed storage is truthful, and throttling is enforced", async () => {
   const h = createDiscoveryHandlers({
-    verifyEmail: async () => true,
     ready: async () => false,
     save: async () => {
       throw Error("must not save");
@@ -158,7 +158,6 @@ test("unconfigured or failed storage is truthful, and throttling is enforced", a
   for (let i = 1; i < 10; i++) await h.POST(request());
   assert.equal((await h.POST(request())).status, 429);
   const failed = createDiscoveryHandlers({
-    verifyEmail: async () => true,
     ready: async () => true,
     save: async () => {
       throw Error("private details");

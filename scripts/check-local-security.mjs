@@ -34,13 +34,7 @@ for (const path of [
   await response.arrayBuffer();
   checks++;
 }
-for (const path of [
-  "/api/contact",
-  "/api/discovery",
-  "/api/discovery/email-verification",
-  "/api/discovery/pdf",
-  "/api/discovery/email-report",
-]) {
+for (const path of ["/api/contact", "/api/discovery", "/api/discovery/pdf"]) {
   const response = await fetch(base + path, {
     method: "POST",
     headers: {
@@ -53,6 +47,15 @@ for (const path of [
     body: "{}",
   });
   assert.equal(response.status, 403, path);
+  await response.arrayBuffer();
+  checks++;
+}
+for (const path of [
+  "/api/discovery/email-verification",
+  "/api/discovery/email-report",
+]) {
+  const response = await fetch(base + path, { method: "POST" });
+  assert.equal(response.status, 404, path);
   await response.arrayBuffer();
   checks++;
 }

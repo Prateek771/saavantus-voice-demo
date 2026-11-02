@@ -71,3 +71,7 @@ Visual/copy direction is approved; the private repository is Prateek771/saavantu
 ## October 23 approved brand and discovery update
 
 Use the supplied muted blue Saavantus Excellence logo in the header and footer; preserve its original artwork and the site theme. Customer-facing brand references use Saavantus Excellence; technical identifiers and existing email/domain addresses stay unchanged. Replace Our approach navigation with AI Discovery and a dedicated /ai-discovery page. Results are deterministic, self-reported and local to the page session, with Not sure and explicit evidence coverage. No answers are persisted or sent to APIs or CRM. See docs/AI_DISCOVERY_PLAN.md.
+
+## November 2 Discovery download-only update
+
+The owner removed business-email OTP verification and Email my report. The required email field retains format validation. Assessments and PDF downloads no longer require mailbox proof. Download PDF, Print / save PDF, consent, fixed scoring, Google Sheets saving, request validation and existing rate/concurrency limits remain. The two email API routes and adapters are removed; stored records and ignored credentials are not deleted. See docs/DISCOVERY_EMAIL_REPORTS.md for the current flow.

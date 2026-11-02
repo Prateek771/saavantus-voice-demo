@@ -87,8 +87,7 @@ export default function Privacy() {
         The page shows connection status before you begin. When the Google
         connection is unavailable, the assessment runs as a preview: your
         profile and answers remain in page memory and are not saved to Google
-        Sheets. Email verification still sends your business email to the
-        server. Reloading or leaving the page clears the local assessment state.
+        Sheets. Reloading or leaving the page clears the local assessment state.
       </p>
       <p>
         When the connection is available, submitting a completed assessment with
@@ -115,32 +114,19 @@ export default function Privacy() {
         or to request manual deletion. Avoid confidential business details,
         patient records, identity documents and payment information.
       </p>
-      <h2>Email verification and assessment reports</h2>
+      <h2>Assessment report downloads</h2>
       <p>
-        Before continuing, you must verify control of your business email using
-        a code requested through this app. The server checks email syntax,
-        disposable-domain indicators and domain mail records through DNS. These
-        checks do not prove a business identity or detect every temporary or
-        misleading address. Requesting a code sends your address to the
-        configured email provider; code verification and delivery state are
-        processed by the app. Verification data is separate from marketing
-        consent.
-      </p>
-      <p>
-        Download PDF sends your profile and answers to the app server to prepare
-        the report and returns a file to your browser. Email my report sends the
-        requested report to your verified business address through the
-        configured mail provider. The report contains assessment information, so
-        check the destination before sending. A confirmed send means provider
-        acceptance, not guaranteed inbox delivery. Missing confirmation can
-        leave delivery uncertain. No automatic retry is made by these controls.
+        Your business email is checked for valid formatting; no verification
+        code is requested or sent. Download PDF sends your profile and answers
+        to the app server to prepare the report and returns a file to your
+        browser. Reports are not emailed. Print / save PDF uses your browser's
+        print controls.
       </p>
       <p>
         Generated report processing does not delete saved assessment records.
-        Downloaded files remain on your device until you delete them; emailed
-        copies remain subject to your mailbox and provider retention settings.
-        Contact the owner for questions about server-held verification or report
-        records. Do not include sensitive or confidential information.
+        Downloaded files remain on your device until you delete them. Avoid
+        sensitive or confidential information. Contact the owner for questions
+        about saved assessment records.
       </p>
       <h2>Downloads are your choice</h2>
       <p>

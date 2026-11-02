@@ -1,41 +1,22 @@
-# AI Discovery verified email and PDF reports
+# AI Discovery PDF downloads
 
-The organization profile requires a verified email before continuing. Assessment storage, PDF download and email delivery also check the exact normalized address against an HttpOnly session cookie on the server. Editing the address requires verification again. Case and surrounding whitespace do not change the identity.
+## Current flow - November 2, 2026
 
-## Owner setup
+The organization profile keeps its required business-email field and format validation, but no OTP or mailbox ownership check is required. Visitors give data-processing consent, complete the forty statements, and can use Download PDF or Print / save PDF. There is no Email my report control. The verification and report-email API routes and their mail adapters have been removed.
 
-Approved sender: mukesh.das@saavantus.com. Enable Gmail API in the existing OAuth client's Google Cloud project. Run `npm run google:authorize -- --mail` and complete consent as that account. The existing loopback callback is http://127.0.0.1:3111/oauth2callback. Consent requests OpenID, email and Gmail send-only permission. It does not request inbox reading.
+Assessment collection, scoring and connected Google Sheets storage are unchanged apart from removing the verification-cookie requirement. Server-side consent, email format, exact response schema, request origin, media type and request-size validation remain. Assessment saving still confirms Google Sheets delivery before reporting success.
 
-Mail credentials are stored only in ignored `.data/google-mail-oauth.json`. Drive/Sheets authorization remains in its separate existing file. Never copy tokens into frontend variables, Git, documentation or screenshots. The mail adapter refreshes the token and verifies the account before sending.
+PDFs are recomputed from the supplied validated answers. The generator, watermark, dimension dashboard, SWOT, roadmap and organization details are unchanged. The cover ends after the readiness/adoption scores. Downloads do not require Gmail credentials or a verification cookie and are not archived automatically.
 
-## Visitor flow
+PDF generation keeps ten downloads per supplied address per hour, sixty per process per hour and at most two concurrent jobs. The address is user supplied and is not a verified identity; the process-wide budget and concurrency cap still apply when an address changes. These are the existing single-process limits, not distributed deployment guarantees. Assessment saving keeps its existing process-wide acceptance budget and rejects invalid input before consuming that budget.
 
-1. Enter the organization profile and request a six-digit verification code.
-2. Email syntax, the bundled disposable-domain list, and domain MX records are checked before delivery. These checks do not prove a person's identity or guarantee every disposable service is blocked. Receiving and entering the code proves access to that mailbox at that time.
-3. Codes expire after 10 minutes and five attempts. Verification is bound to the browser cookie and address for 24 hours. Codes and cookie values are not stored in plaintext.
-4. Complete the forty statements. The report offers Print / save PDF, Download PDF and Email my report. Email always uses the verified profile address, never a caller-selected alternate recipient.
-5. Downloaded and emailed PDFs use the same server generator and recomputed scores. Each page has the approved company logo as a large, faint centered watermark. Browser print also has a fixed watermark, but browser pagination may differ.
+Existing ignored OAuth files, historical verification state and delivery receipts are left on the owner's computer; this change does not delete credentials or assessment records. No code path in the Discovery flow sends email. Historic setup scripts and assets do not activate email delivery.
 
-The attachment includes scores, coverage, dimension summaries, methodology, SWOT observations, the 30/60/90-day plan and organization details. The response appendix and individual answer statements were removed at the owner's request. The first page now ends after the readiness and adoption scores; the separate response-coverage graphic, workflow-context section and accompanying note were removed at the owner's request. Assessment collection, scoring and Google Sheets storage are unchanged. Report revision participates in email deduplication so an explicitly requested updated report can be sent even if an older-format report was sent before. Unsupported font characters are explicitly represented as Unicode code points rather than silently dropped.
+The record below describes an earlier version and is retained as historical evidence only.
 
-## Delivery and persistence
+### Current verification
 
-Gmail acceptance is reported as sent; it is not proof of inbox delivery. Identical report content is deduplicated independently of request IDs. Unconfirmed sends retain a pending receipt and are not automatically resent. Verification messages are sent only on explicit request. No marketing messages are sent.
-
-Local preview uses durable files under ignored `.data/discovery-email-verification` and `.data/discovery-report-delivery`. OTP requests have a 60-second cooldown and five requests per address per hour. A shared local-preview quota allows twenty sends and fifty code checks per hour, ignoring caller-supplied forwarding headers. Report email allows three attempts per address per hour. File locks and this shared quota are intended for the current single-process preview, not a distributed/serverless deployment. A public deployment needs shared transactional storage and trusted-proxy rate limiting. Stale lock files after a process crash require operator investigation, not blind deletion.
-
-PDFs are generated in memory, not archived automatically. Receipt files contain hashes/status, not report content. Verification state contains the normalized address and expiry and is pruned on later verification requests; it is separate from the approved Google Sheet assessment records.
-
-Security update 2026-10-24: PDF generation additionally allows ten downloads per verified address per hour, sixty per process per hour and at most two concurrent jobs. Public provider-readiness booleans coalesce concurrent requests and refresh at most every thirty seconds per handler; mailbox proof and send/save authorization are not shared or cached. Assessment acceptance quotas ignore untrusted forwarding headers and apply only after validation and email proof; invalid contact requests do not consume the enquiry acceptance budget. See SECURITY_REVIEW_2026-10-24.md for coverage and remaining public-deployment work.
-
-## Bundled asset sources
-
-- DM Sans font: https://github.com/google/fonts/tree/main/ofl/dmsans — SIL Open Font License, copied in assets/report-font-LICENSE.txt.
-- Disposable domains: https://github.com/disposable-email-domains/disposable-email-domains — local blocklist snapshot retrieved 2026-10-23, license copied in assets/disposable-email-domains-LICENSE.txt. Update this snapshot periodically and review false positives.
-- Gmail MIME/send contract: https://developers.google.com/workspace/gmail/api/guides/sending
-- Gmail scope: https://developers.google.com/workspace/gmail/api/auth/scopes
-
-Automated checks exercise mocked mail delivery, cookie/address binding, expiry, abuse boundaries, deduplication, uncertain failures and PDF pages/watermarks. Real Gmail authorization and inbox receipt are separate acceptance checks; tests do not send live email.
+65 tests, TypeScript and the production build pass. Localhost checks confirm the assessment page loads without the verification section, both removed email POST endpoints return 404, and a synthetic PDF download returns HTTP 200/application/pdf without a verification cookie or Gmail dependency. The check sent no email and saved no assessment. A read-only review found no dangling runtime imports or outbound-email implementation. The browser inspection tool was unavailable for this final check; verification used the running routes and automated tests.
 
 ## Verification record — 2026-10-23
 

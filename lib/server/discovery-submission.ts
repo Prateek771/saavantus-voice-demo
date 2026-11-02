@@ -7,7 +7,6 @@ import { cachedCheck } from "./cached-check.ts";
 
 type Dependencies = {
   ready: () => Promise<boolean>;
-  verifyEmail?: (request: Request, email: string) => Promise<boolean>;
   save: (
     requestId: string,
     fingerprint: string,
@@ -156,18 +155,7 @@ export function createDiscoveryHandlers(deps: Dependencies) {
           400,
         );
       const { requestId, profile: p, answers } = checked.value;
-      if (
-        !deps.verifyEmail ||
-        !(await deps.verifyEmail(request, p.businessEmail))
-      )
-        return json(
-          {
-            saved: false,
-            error: "Verify your business email before submitting.",
-          },
-          403,
-        );
-      // Reserve the accepted-submission budget for valid, verified assessments.
+      // Reserve the accepted-submission budget for valid assessments.
       for (const [k, v] of attempts)
         if (time - v.start >= 60_000) attempts.delete(k);
       const bucket = attempts.get(key) ?? { start: time, count: 0 };

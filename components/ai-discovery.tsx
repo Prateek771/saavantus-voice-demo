@@ -1,10 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { DiscoveryVisualReport } from "@/components/discovery-visual-report";
-import {
-  ReportEmailButton,
-  DownloadReportButton,
-} from "@/components/discovery-email-controls";
+import { DownloadReportButton } from "@/components/download-report-button";
 import { DiscoveryProfileForm } from "@/components/discovery-profile-form";
 import {
   emptyProfile,
@@ -309,7 +306,6 @@ export function AIDiscovery() {
             <button className="button secondary" onClick={() => window.print()}>
               Print / save PDF
             </button>
-            <ReportEmailButton profile={profile} answers={answers} />
           </div>
           <h2 ref={heading} tabIndex={-1}>
             {profile.organization} · AI discovery assessment
@@ -344,11 +340,12 @@ export function AIDiscovery() {
           <details className="discovery-method">
             <summary>How your assessment is calculated</summary>
             <p>
-              Each known response becomes 0, 25, 50, 75 or 100 for answers 1–5.
-              A dimension averages its known responses; Not sure is excluded.
-              Each readiness dimension has a fixed 1/6 weight: Strategy, Data,
-              Technology, People, Governance and ROI. Automation and AI adoption
-              each have a fixed 1/2 weight in the adoption score.
+              Each known response becomes 0, 25, 50, 75 or 100 for answers
+              1–5. A dimension averages its known responses; Not sure is
+              excluded. Each readiness dimension has a fixed 1/6 weight:
+              Strategy, Data, Technology, People, Governance and ROI. Automation
+              and AI adoption each have a fixed 1/2 weight in the adoption
+              score.
             </p>
             <p>
               A group score is reported only when every dimension has at least
